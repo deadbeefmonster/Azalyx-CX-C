@@ -14,7 +14,6 @@ load_configuration_file(struct settings *conf) {
     if (!g_key_file_load_from_file(keyfile, conf->configuration_file, flags, &error)) {
         g_error("Unable to load configuration from configuration file '%s': %s", conf->configuration_file,
                 error->message);
-        exit(EXIT_FAILURE);
     }
     service_enable_dns = g_key_file_get_boolean(keyfile, "service", "enable_dns", NULL);
     service_enable_http = g_key_file_get_boolean(keyfile, "service", "enable_http", NULL);
