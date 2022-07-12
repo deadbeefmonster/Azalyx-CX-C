@@ -37,6 +37,7 @@ service_generate(gint service_type, gint service_proto, gint port, struct event_
     } else {
         g_debug("bind() passed");
     }
+    data->sin = sin;
 
     if (service_proto == SERVICE_PROTO_TCP) {
         g_debug("Calling listen()");

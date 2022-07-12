@@ -1,20 +1,9 @@
 #define G_LOG_USE_STRUCTURED 1
 
 #include <glib.h>
-#include <glib/gi18n.h>
-
-#include <netinet/in.h>
-#include <sys/socket.h>
 #include <event2/event.h>
-#include <event2/buffer.h>
 #include <event2/bufferevent.h>
-#include <assert.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
 
 #include "cli_arguments.h"
 #include "configuration.h"

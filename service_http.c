@@ -35,10 +35,10 @@ service_http_callback_read(struct bufferevent *bev, void *ctx) {
     if (evbuffer_get_length(input) >= MAX_LINE) {
         char buf[1024];
         while (evbuffer_get_length(input)) {
-            int n = evbuffer_remove(input, buf, sizeof(buf));
+            int n2 = evbuffer_remove(input, buf, sizeof(buf));
             g_debug("service_http_callback_read; buf=%s", buf);
 
-            evbuffer_add(output, buf, n);
+            evbuffer_add(output, buf, (size_t)n2);
         }
         evbuffer_add(output, "\n", 1);
     }
