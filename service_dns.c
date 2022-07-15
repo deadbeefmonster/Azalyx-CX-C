@@ -20,7 +20,7 @@ service_dns_debug_request(struct dns_request *request) {
     g_debug("request->header->nscount = %i", request->header->nscount);
     g_debug("request->header->arcount = %i", request->header->arcount);
 
-    for (int i = (request->header->qdcount - 1); i > -1; i--) {
+    for (guint i = (request->header->qdcount - 1); i > -1; i--) {
         struct dns_question *question;
         question = g_array_index(request->questions, struct dns_question *, i);
         g_debug("question->qname->str  = %s (idx = %i)", question->qname->str, i);
@@ -31,7 +31,7 @@ service_dns_debug_request(struct dns_request *request) {
 
 
 void
-service_dns_parse_request(guchar *buffer, struct dns_request *request, int request_size) {
+service_dns_parse_request(guchar *buffer, struct dns_request *request, glong request_size) {
     guint id, flags, qdcount, ancount, nscount, arcount;
 
     id = 0;
@@ -87,7 +87,7 @@ service_dns_parse_request(guchar *buffer, struct dns_request *request, int reque
     request->header->nscount = nscount;
     request->header->arcount = arcount;
 
-    /* Mask the value and bit shift so it is at the start of the bytes. */
+    /* Mask the value and bit shift, so it is at the start of the bytes. */
     request->header->qr = (guint) flags & header_mask_qr;
     request->header->aa = request->header->aa >> 15;
     request->header->opcode = (guint) flags & header_mask_opcode;
@@ -132,9 +132,9 @@ service_dns_parse_request(guchar *buffer, struct dns_request *request, int reque
 
     /* QUESTIONS */
     gint buffer_count = 12;
-    gint qname_chunk_size = (u_int) buffer[buffer_count];
+    gint qname_chunk_size = (gint) buffer[buffer_count];
     buffer_count++;
-    for (int qdcount = request->header->qdcount; qdcount > 0; qdcount--) {
+    for (qdcount = request->header->qdcount; qdcount > 0; qdcount--) {
         struct dns_question *question = g_slice_new(struct dns_question);
         GString *qname = g_string_new(NULL);
 
@@ -144,7 +144,7 @@ service_dns_parse_request(guchar *buffer, struct dns_request *request, int reque
                 buffer_count++;
                 qname = g_string_append_c(qname, c);
             }
-            qname_chunk_size = (u_int) buffer[buffer_count];
+            qname_chunk_size = (gint) buffer[buffer_count];
             buffer_count++;
             if (qname_chunk_size != 0)
                 g_string_append_c(qname, '.');
@@ -168,7 +168,7 @@ service_dns_parse_request(guchar *buffer, struct dns_request *request, int reque
 void
 service_dns_process_request(struct dns_request *request) {
     /* Iterate through each question */
-    for (int i = (request->header->qdcount - 1); i > -1; i--) {
+    for (guint i = (request->header->qdcount - 1); i > -1; i--) {
         struct dns_question *question;
         question = g_array_index(request->questions, struct dns_question *, i);
 
@@ -217,7 +217,7 @@ service_dns_cb_conn_new(evutil_socket_t listener, short event, void *arg) {
     struct dns_request *request;
     socklen_t server_sz;
     guchar buffer[512] = {0};
-    gint request_size;
+    glong request_size;
 
     /* Initialize variables */
     base = arg;
@@ -233,8 +233,8 @@ service_dns_cb_conn_new(evutil_socket_t listener, short event, void *arg) {
     request_size = recvfrom(listener, buffer, 512, 0, (struct sockaddr *) &server_sin, &server_sz);
     if (request_size == -1) {
         perror("recvfrom()");
-        g_error("service_dns_callback_connection_new: recvfrom() failed");
         event_base_loopbreak(base);
+        g_error("service_dns_callback_connection_new: recvfrom() failed");
     }
     /* Parse the request from a stream of bits to a usable data structure */
     service_dns_parse_request(buffer, request, request_size);

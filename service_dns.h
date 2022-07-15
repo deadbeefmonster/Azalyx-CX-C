@@ -77,7 +77,7 @@ void service_dns_cb_conn_new(evutil_socket_t, short, void *);
 
 void service_dns_debug_request(struct dns_request *);
 
-void service_dns_parse_request(guchar *, struct dns_request *, int);
+void service_dns_parse_request(guchar *, struct dns_request *, glong);
 
 void service_dns_process_request(struct dns_request *);
 
