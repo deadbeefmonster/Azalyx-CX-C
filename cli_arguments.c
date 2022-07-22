@@ -39,15 +39,20 @@ cli_arguments_parse(gchar **args, struct settings *conf) {
         g_error("command line argument parsing failed: %s\n", error->message);
     }
     if (cli_argument_service_enable_dns) {
+        g_debug("Enabling DNS service via CLI argument override");
         conf->service_enable_dns = SERVICE_STATUS_ENABLED;
     }
     if (cli_argument_service_enable_http) {
+        g_debug("Enabling HTTP service via CLI argument override");
         conf->service_enable_http = SERVICE_STATUS_ENABLED;
     }
     if (cli_argument_service_enable_smtp) {
+        g_debug("Enabling SMTP service via CLI argument override");
         conf->service_enable_smtp = SERVICE_STATUS_ENABLED;
     }
     if (cli_argument_configuration_file) {
-        strlcpy(conf->configuration_file, cli_argument_configuration_file, sizeof(conf->configuration_file));
+        g_debug("Setting conf->configuration_file from '%s' to '%s'", conf->configuration_file, cli_argument_configuration_file);
+        conf->configuration_file = cli_argument_configuration_file;
+        g_debug("Set conf->configuration_file, it is now '%s'", conf->configuration_file);
     }
 }
