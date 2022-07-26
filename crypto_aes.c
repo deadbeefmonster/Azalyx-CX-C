@@ -4,9 +4,9 @@ int aes_generate_256key_and_iv(unsigned char *key, unsigned char* iv) {
     int status = 1;
 
     unsigned char *tmp_key, *tmp_iv;
-    tmp_key = (unsigned char *) malloc(sizeof(char)*32);
+    tmp_key = (unsigned char *) malloc(32);
     memset(tmp_key, '\0', 32);
-    tmp_key = (unsigned char *) malloc(sizeof(char)*16);
+    tmp_key = (unsigned char *) malloc(16);
     memset(tmp_key, '\0', 16);
 
 
@@ -26,7 +26,7 @@ int aes_generate_256key_and_iv(unsigned char *key, unsigned char* iv) {
 
     free(tmp_key);
     free(tmp_iv);
-    
+
     return status;
 }
 
