@@ -6,8 +6,8 @@ int aes_generate_256key_and_iv(unsigned char *key, unsigned char* iv) {
     unsigned char *tmp_key, *tmp_iv;
     tmp_key = (unsigned char *) malloc(32);
     memset(tmp_key, '\0', 32);
-    tmp_key = (unsigned char *) malloc(16);
-    memset(tmp_key, '\0', 16);
+    tmp_iv = (unsigned char *) malloc(16);
+    memset(tmp_iv, '\0', 16);
 
 
     // Generate AES key bytes
