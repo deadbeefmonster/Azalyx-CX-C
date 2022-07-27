@@ -12,32 +12,31 @@
 #include <event2/bufferevent.h>
 
 struct dns_header {
-    guint id;
-    guint qr;
-    guint opcode;
-    guint aa;
-    guint tc;
-    guint rd;
-    guint ra;
-    guint z;
-    guint rcode;
-    guint qdcount;
-    guint ancount;
-    guint nscount;
-    guint arcount;
+  guint id;
+  guint qr;
+  guint opcode;
+  guint aa;
+  guint tc;
+  guint rd;
+  guint ra;
+  guint z;
+  guint rcode;
+  guint qdcount;
+  guint ancount;
+  guint nscount;
+  guint arcount;
 };
 
 struct dns_question {
-    GString *qname;
-    gint qtype;
-    gint qclass;
+  GString *qname;
+  gint qtype;
+  gint qclass;
 };
 
 struct dns_request {
-    struct dns_header *header;
-    GArray *questions;    /* contains dns_question structs */
+  struct dns_header *header;
+  GArray *questions;    /* contains dns_question structs */
 };
-
 
 #define DNS_QTYPE_A 1        /* a host address */
 #define DNS_QTYPE_NS 2        /* an authoritative name server */

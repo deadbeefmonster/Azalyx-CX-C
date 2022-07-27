@@ -14,9 +14,13 @@
 
 #define MAX_LINE 16384
 
-void service_http_callback_connection_new(evutil_socket_t listener, short event, void *arg);
+void service_http_callback_connection_new(evutil_socket_t listener,
+										  short event,
+										  void *arg);
 
-void service_http_callback_error(struct bufferevent *bev, short error, void *ctx);
+void service_http_callback_error(struct bufferevent *bev,
+								 short error,
+								 void *ctx);
 
 void service_http_callback_read(struct bufferevent *bev, void *ctx);
 
