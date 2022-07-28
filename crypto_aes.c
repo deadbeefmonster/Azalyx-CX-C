@@ -1,37 +1,24 @@
 #include "crypto_aes.h"
 
-int aes_generate_256key_and_iv(unsigned char *key, unsigned char *iv) {
+int aes_generate_new_key_iv(struct aes_key *aes_key) {
   int status = 1;
 
-  unsigned char *tmp_key, *tmp_iv;
-  tmp_key = (unsigned char *)malloc(32);
-  memset(tmp_key, '\0', 32);
-  tmp_iv = (unsigned char *)malloc(16);
-  memset(tmp_iv, '\0', 16);
-
-
   // Generate AES key bytes
-  if (1!=RAND_priv_bytes(tmp_key, 32)) {
+  if (1!=RAND_priv_bytes(aes_key->key, 32)) {
 	status = 0;
 	// Error handling
   }
+
   // Generate AES iv bytes
-  if (1!=RAND_priv_bytes(tmp_iv, 16)) {
+  if (1!=RAND_priv_bytes(aes_key->iv, 16)) {
 	status = 0;
 	// Error handling
   }
-
-  *key = *tmp_key;
-  *iv = *tmp_iv;
-
-  free(tmp_key);
-  free(tmp_iv);
 
   return status;
 }
 
-int aes_encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key,
-				unsigned char *iv, unsigned char *ciphertext) {
+int aes_encrypt(unsigned char *plaintext, int plaintext_len, struct aes_key *aes_key, unsigned char *ciphertext) {
   EVP_CIPHER_CTX *ctx;
 
   int len;
@@ -50,9 +37,10 @@ int aes_encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key,
    * IV size for *most* modes is the same as the block size. For AES this
    * is 128 bits
    */
-  if (1!=EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, key, iv)) {
+  if (1!=EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, aes_key->key, aes_key->iv)) {
 	// Error handling
   }
+
 
   /*
    * Provide the message to be encrypted, and obtain the encrypted output.
@@ -62,6 +50,7 @@ int aes_encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key,
 	// Error handling
   }
   ciphertext_len = len;
+
 
   /*
    * Finalise the encryption. Further ciphertext bytes may be written at
@@ -77,11 +66,7 @@ int aes_encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key,
 
   return ciphertext_len;
 }
-int aes_decrypt(unsigned char *ciphertext,
-				int ciphertext_len,
-				unsigned char *key,
-				unsigned char *iv,
-				unsigned char *plaintext) {
+int aes_decrypt(unsigned char *ciphertext, int ciphertext_len, struct aes_key *aes_key, unsigned char *plaintext) {
   EVP_CIPHER_CTX *ctx;
 
   int len;
@@ -91,7 +76,6 @@ int aes_decrypt(unsigned char *ciphertext,
   /* Create and initialise the context */
   if (!(ctx = EVP_CIPHER_CTX_new())) {
 	// Error handling
-
   }
 
   /*
@@ -101,7 +85,7 @@ int aes_decrypt(unsigned char *ciphertext,
    * IV size for *most* modes is the same as the block size. For AES this
    * is 128 bits
    */
-  if (1!=EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, key, iv)) {
+  if (1!=EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, aes_key->key, aes_key->iv)) {
 	// Error handling
   }
 
