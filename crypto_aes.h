@@ -13,14 +13,13 @@
 #include <openssl/aes.h>
 #include <openssl/rand.h>
 
-int aes_encrypt(unsigned char *plaintext, int plaintext_len, unsigned char *key,
-				unsigned char *iv, unsigned char *ciphertext);
-int aes_decrypt(unsigned char *ciphertext,
-				int ciphertext_len,
-				unsigned char *key,
-				unsigned char *iv,
-				unsigned char *plaintext);
+struct aes_key {
+  unsigned char key[32];  // 32 bytes (256 bits)
+  unsigned char iv[16];   // 16 bytes (128 bits)
+};
 
-int aes_generate_256key_and_iv(unsigned char *key, unsigned char *iv);
+int aes_encrypt(unsigned char *plaintext, int plaintext_len, struct aes_key *aes_key, unsigned char *ciphertext);
+int aes_decrypt(unsigned char *ciphertext, int ciphertext_len, struct aes_key *aes_key, unsigned char *plaintext);
+int aes_generate_new_key_iv(struct aes_key *aes_key);
 
 #endif //CLUTCHINGPEARLS_CRYPTO_AES_H
