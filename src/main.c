@@ -43,7 +43,7 @@ main(int argc, char** argv)
 		g_error("event_base_new() failed");
 
 	/* Init configuration */
-	conf->configuration_file = "clutchingpearls.ini";
+	conf->configuration_file = "Azalyx-CX.ini";
 	conf->service_enable_dns = SERVICE_STATUS_UNKNOWN;
 	conf->service_enable_http = SERVICE_STATUS_UNKNOWN;
 	conf->service_enable_smtp = SERVICE_STATUS_UNKNOWN;

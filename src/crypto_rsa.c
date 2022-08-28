@@ -37,7 +37,7 @@ int rsa_encrypt(EVP_PKEY* pkey,
 		unsigned char* cipher_bytes)
 {
 	EVP_CIPHER_CTX* ctx;
-	int ciphertext_len;
+	int cipher_bytes_len;
 	int len;
 
 
@@ -51,29 +51,29 @@ int rsa_encrypt(EVP_PKEY* pkey,
 	 * of times (one for each public key provided in the pub_key array). In
 	 * this example the array size is just one. This operation also
 	 * generates an IV and places it in iv. */
-	if (1!=EVP_SealInit(ctx, EVP_aes_256_cbc(), encrypted_key,
-			encrypted_key_len, iv, pkey, 1)) {
+	if (1!=EVP_SealInit(ctx, EVP_aes_256_cbc(), &encrypted_key,
+			&encrypted_key_len, iv, &pkey, 1)) {
 		/* Handle errors */
 	}
 
 	/* Provide the message to be encrypted, and obtain the encrypted output.
 	 * EVP_SealUpdate can be called multiple times if necessary
 	 */
-	if (1!=EVP_SealUpdate(ctx, ciphertext, &len, plaintext, plaintext_len)) {
+	if (1!=EVP_SealUpdate(ctx, cipher_bytes, &len, bytes, bytes_len)) {
 		/* Handle errors */
 	}
-	ciphertext_len = len;
+	cipher_bytes_len = len;
 
-	/* Finalise the encryption. Further ciphertext bytes may be written at
+	/* Finalise the encryption. Further cipher_bytes bytes may be written at
 	 * this stage.
 	 */
-	if (1!=EVP_SealFinal(ctx, ciphertext+len, &len)) {
+	if (1!=EVP_SealFinal(ctx, cipher_bytes+len, &len)) {
 		/* Handle errors */
 	}
-	ciphertext_len += len;
+	cipher_bytes_len += len;
 
 	/* Clean up */
 	EVP_CIPHER_CTX_free(ctx);
 
-	return ciphertext_len;
+	return cipher_bytes_len;
 }
