@@ -14,12 +14,12 @@
 #include "service.h"
 
 struct settings {
-  gchar *configuration_file;
-  gint service_enable_dns;
-  gint service_enable_http;
-  gint service_enable_smtp;
+	gchar* configuration_file;
+	gint service_enable_dns;
+	gint service_enable_http;
+	gint service_enable_smtp;
 };
 
-void load_configuration_file(struct settings *);
+void load_configuration_file(struct settings*);
 
 #endif //CLUTCHINGPEARLS_CONFIGURATION_H

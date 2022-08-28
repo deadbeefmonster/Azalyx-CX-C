@@ -18,8 +18,8 @@ struct aes_key {
   unsigned char iv[16];   // 16 bytes (128 bits)
 };
 
-int aes_encrypt(unsigned char *plaintext, int plaintext_len, struct aes_key *aes_key, unsigned char *ciphertext);
-int aes_decrypt(unsigned char *ciphertext, int ciphertext_len, struct aes_key *aes_key, unsigned char *plaintext);
-int aes_generate_new_key_iv(struct aes_key *aes_key);
+int aes_encrypt(unsigned char* plaintext, int plaintext_len, struct aes_key* aes_key, unsigned char* ciphertext);
+int aes_decrypt(unsigned char* ciphertext, int ciphertext_len, struct aes_key* aes_key, unsigned char* plaintext);
+int aes_generate_new_key_iv(struct aes_key* aes_key);
 
 #endif //CLUTCHINGPEARLS_CRYPTO_AES_H

@@ -13,5 +13,5 @@ include_directories(${LIBEVENT_INCLUDE_DIRS} ${GLIB_INCLUDE_DIRS} ${OPENSSL_INCL
 
 add_executable(${PROJECT_NAME}
         main.c
-        cli_arguments.h cli_arguments.c configuration.c configuration.h service.c service.h service_smtp.c service_smtp.h service_http.c service_http.h service_dns.c service_dns.h crypto_aes.c crypto_aes.h)
+        cli_arguments.h cli_arguments.c configuration.c configuration.h service.c service.h service_smtp.c service_smtp.h service_http.c service_http.h service_dns.c service_dns.h crypto_aes.c crypto_aes.h crypto_rsa.c crypto_rsa.h)
 target_link_libraries(${PROJECT_NAME} PkgConfig::GLIB PkgConfig::LIBEVENT OpenSSL::SSL OpenSSL::Crypto)
