@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
-project(Azalyx_CX C)
+project(Eagle_Force_CX C)
 
 set(CMAKE_C_STANDARD 99)
 
