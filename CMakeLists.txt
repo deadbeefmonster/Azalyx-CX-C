@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
-project(Eagle_Force_CX C)
+project(SuperEagleLanceForce C)
 
 set(CMAKE_C_STANDARD 99)
 
