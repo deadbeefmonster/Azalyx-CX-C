@@ -1,0 +1,40 @@
+- sqlite support
+- mysql support
+- postgresql support
+
+- http support
+- https support
+- ftp support
+- smtp support
+- imcp support
+- imap support
+- raw UDP support
+- raw TCP support
+- SMB support
+- dns over udp
+- dns over tcp
+- dns over https
+
+- admin session support
+- client session support
+
+- rsa encryption support
+- aes encryption support
+
+- server API with swagger file
+
+- data chunker
+- data transmission
+- data modification
+- data serialization
+
+- plugin support
+
+- agent relaying
+- agent time/day schedule
+- agent kill date/time
+- agent kill conditions
+- agent command queue
+- agent multiple server service communications:
+
+- server command queue
