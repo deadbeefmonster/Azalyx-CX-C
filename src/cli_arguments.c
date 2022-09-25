@@ -1,6 +1,6 @@
 /*
  * To show verbose and debug messages
- * G_MESSAGES_DEBUG=all ./Eagle_Force_CX ...
+ * G_MESSAGES_DEBUG=all ./Adlerschlag ...
  * https://people.gnome.org/~ryanl/glib-docs/glib-Message-Logging.html
  * Will control better with another logging manager, probably my own g_log handler.
  *
@@ -35,7 +35,7 @@ cli_arguments_parse(gchar** args, struct settings* conf)
 	/* Defaults */
 	context = g_option_context_new("");
 	g_option_context_set_summary(context,
-			"Super Eagle Lance Force - A C2 program from Sogon Security, LLC (@sogonsecurity)");
+			"Adlerschlag - A C2 program from Sogon Security, LLC (@sogonsecurity)");
 	g_option_context_add_main_entries(context, cli_argument_options, NULL);
 	if (!g_option_context_parse_strv(context, &args, &error)) {
 		g_error("command line argument parsing failed: %s\n", error->message);
