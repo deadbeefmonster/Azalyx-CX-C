@@ -2,8 +2,8 @@
 // Created by Chris Humphries on 7/11/22.
 //
 
-#ifndef CLUTCHINGPEARLS_SERVICE_H
-#define CLUTCHINGPEARLS_SERVICE_H
+#ifndef BLITZKRIEG_SERVICE_H
+#define BLITZKRIEG_SERVICE_H
 
 #include <glib.h>
 #include <glib/gi18n.h>
@@ -36,4 +36,4 @@ struct service_data {
 
 struct service_data* service_generate(gint, gint, gint, struct event_base*);
 
-#endif //CLUTCHINGPEARLS_SERVICE_H
+#endif //BLITZKRIEG_SERVICE_H

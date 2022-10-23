@@ -5,8 +5,8 @@
  * All configuration file stuff
  */
 
-#ifndef CLUTCHINGPEARLS_CONFIGURATION_H
-#define CLUTCHINGPEARLS_CONFIGURATION_H
+#ifndef BLITZKRIEG_CONFIGURATION_H
+#define BLITZKRIEG_CONFIGURATION_H
 
 #include <glib.h>
 #include <glib/gi18n.h>
@@ -22,4 +22,4 @@ struct settings {
 
 void load_configuration_file(struct settings*);
 
-#endif //CLUTCHINGPEARLS_CONFIGURATION_H
+#endif //BLITZKRIEG_CONFIGURATION_H
