@@ -2,8 +2,8 @@
 // Created by Chris Humphries on 7/11/22.
 //
 
-#ifndef CLUTCHINGPEARLS_SERVICE_DNS_H
-#define CLUTCHINGPEARLS_SERVICE_DNS_H
+#ifndef BLITZKRIEG_SERVICE_DNS_H
+#define BLITZKRIEG_SERVICE_DNS_H
 
 #include <glib.h>
 #include <glib/gi18n.h>
@@ -79,4 +79,4 @@ void service_dns_parse_request(guchar*, struct dns_request*, glong);
 
 void service_dns_process_request(struct dns_request*);
 
-#endif //CLUTCHINGPEARLS_SERVICE_DNS_H
+#endif //BLITZKRIEG_SERVICE_DNS_H

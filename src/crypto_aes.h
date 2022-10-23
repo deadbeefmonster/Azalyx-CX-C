@@ -5,8 +5,8 @@
  * https://github.com/saju/misc/blob/master/misc/openssl_aes.c (another example of using EVP for AES)
  */
 
-#ifndef CLUTCHINGPEARLS_CRYPTO_AES_H
-#define CLUTCHINGPEARLS_CRYPTO_AES_H
+#ifndef BLITZKRIEG_CRYPTO_AES_H
+#define BLITZKRIEG_CRYPTO_AES_H
 
 #include <glib.h>
 #include <openssl/evp.h>
@@ -22,4 +22,4 @@ int aes_encrypt(unsigned char* plaintext, int plaintext_len, struct aes_key* aes
 int aes_decrypt(unsigned char* ciphertext, int ciphertext_len, struct aes_key* aes_key, unsigned char* plaintext);
 int aes_generate_new_key_iv(struct aes_key* aes_key);
 
-#endif //CLUTCHINGPEARLS_CRYPTO_AES_H
+#endif //BLITZKRIEG_CRYPTO_AES_H
