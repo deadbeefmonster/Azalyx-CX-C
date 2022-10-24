@@ -1,3 +1,4 @@
+Version 1.0 - "Nosferatu" (https://www.youtube.com/watch?v=ZyyZlSw0yNs)
 - sqlite support
 - mysql support
 - postgresql support
