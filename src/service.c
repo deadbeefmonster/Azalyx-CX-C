@@ -56,10 +56,10 @@ service_generate(gint service_type,
 	if (data->service_type==SERVICE_TYPE_DNS) {
 		g_debug("Adding listener for DNS");
 		listener_event = event_new(base,
-				listener,
-				EV_READ | EV_PERSIST,
-				service_dns_cb_conn_new,
-				(void*)base);
+                                   listener,
+                                   EV_READ | EV_PERSIST,
+                                   service_dns_callback_conn_new,
+                                   (void *) base);
 	} else if (data->service_type==SERVICE_TYPE_SMTP) {
 		g_debug("Adding listener for SMTP");
 		listener_event = event_new(base,
