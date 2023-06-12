@@ -71,7 +71,7 @@ static const guint header_mask_z = 0x0070; /* 0000 0000 0111 0000 */
 static const guint header_mask_rcode = 0x000F; /* 0000 0000 0000 1111 */
 
 
-void service_dns_cb_conn_new(evutil_socket_t, short, void*);
+void service_dns_callback_conn_new(evutil_socket_t, short, void*);
 
 void service_dns_debug_request(struct dns_request*);
 

@@ -255,7 +255,7 @@ service_dns_process_request(struct dns_request* request)
 }
 
 void
-service_dns_cb_conn_new(evutil_socket_t listener, short event, void* arg)
+service_dns_callback_conn_new(evutil_socket_t listener, short event, void* arg)
 {
 	struct event_base* base;
 	struct sockaddr_in server_sin;

@@ -8,10 +8,18 @@ load_configuration_file(struct settings* conf)
 	GError* error = NULL;
 	gboolean service_enable_dns, service_enable_http, service_enable_smtp;
 
-	/* Create a new GKeyFile object and a bitwise list of flags. */
+    /* Test if file is available for read-only access */
+    int fd = g_open(conf->configuration_file, O_WRONLY | O_NOFOLLOW | O_CLOEXEC);
+    if (fd == -1) {
+        g_printf("ERROR: Unable to open '%s' for reading\n", conf->configuration_file);
+        exit(EXIT_FAILURE);
+        //g_error("Unable to open '%s' for reading", conf->configuration_file, NULL);
+    }
+    close(fd);
+
+    /* Create a new GKeyFile object and a bitwise list of flags. */
 	keyfile = g_key_file_new();
 	flags = G_KEY_FILE_KEEP_COMMENTS | G_KEY_FILE_KEEP_TRANSLATIONS;
-
 	if (!g_key_file_load_from_file(keyfile,
 			conf->configuration_file,
 			flags,
