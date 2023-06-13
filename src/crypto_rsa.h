@@ -13,12 +13,12 @@
 //int rsa_encrypt();
 //int rsa_decrypt();
 int rsa_encrypt(EVP_PKEY *pkey,
-				unsigned char *bytes,
-				int bytes_len,
-				unsigned char *encrypted_key,
-				int encrypted_key_len,
-				unsigned char *iv,
-				unsigned char *cipher_bytes);
+                unsigned char *bytes,
+                int bytes_len,
+                unsigned char *encrypted_key,
+                int encrypted_key_len,
+                unsigned char *iv,
+                unsigned char *cipher_bytes);
 
 /* 2048 bit key */
 int rsa_new_key(EVP_PKEY *pkey, int bits);

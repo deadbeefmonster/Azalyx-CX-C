@@ -12,30 +12,30 @@
 #include <event2/bufferevent.h>
 
 struct dns_header {
-	guint id;
-	guint qr;
-	guint opcode;
-	guint aa;
-	guint tc;
-	guint rd;
-	guint ra;
-	guint z;
-	guint rcode;
-	guint qdcount;
-	guint ancount;
-	guint nscount;
-	guint arcount;
+    guint id;
+    guint qr;
+    guint opcode;
+    guint aa;
+    guint tc;
+    guint rd;
+    guint ra;
+    guint z;
+    guint rcode;
+    guint qdcount;
+    guint ancount;
+    guint nscount;
+    guint arcount;
 };
 
 struct dns_question {
-	GString* qname;
-	gint qtype;
-	gint qclass;
+    GString *qname;
+    gint qtype;
+    gint qclass;
 };
 
 struct dns_request {
-	struct dns_header* header;
-	GArray* questions;    /* contains dns_question structs */
+    struct dns_header *header;
+    GArray *questions;    /* contains dns_question structs */
 };
 
 #define DNS_QTYPE_A 1        /* a host address */
@@ -71,12 +71,12 @@ static const guint header_mask_z = 0x0070; /* 0000 0000 0111 0000 */
 static const guint header_mask_rcode = 0x000F; /* 0000 0000 0000 1111 */
 
 
-void service_dns_callback_conn_new(evutil_socket_t, short, void*);
+void service_dns_callback_conn_new(evutil_socket_t, short, void *);
 
-void service_dns_debug_request(struct dns_request*);
+void service_dns_debug_request(struct dns_request *);
 
-void service_dns_parse_request(guchar*, struct dns_request*, glong);
+void service_dns_parse_request(guchar *, struct dns_request *, glong);
 
-void service_dns_process_request(struct dns_request*);
+void service_dns_process_request(struct dns_request *);
 
 #endif //BLITZKRIEG_SERVICE_DNS_H

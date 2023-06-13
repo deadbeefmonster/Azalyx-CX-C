@@ -27,13 +27,13 @@
 /*#define SERVICE_TYPE_UNIX    8*/
 
 struct service_data {
-	gint service_proto;
-	gint service_type;
-	gint port;
-	evutil_socket_t socket;
-	struct sockaddr_in sin;
+    gint service_proto;
+    gint service_type;
+    gint port;
+    evutil_socket_t socket;
+    struct sockaddr_in sin;
 };
 
-struct service_data* service_generate(gint, gint, gint, struct event_base*);
+struct service_data *service_generate(gint, gint, gint, struct event_base *);
 
 #endif //BLITZKRIEG_SERVICE_H
