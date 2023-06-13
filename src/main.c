@@ -62,7 +62,7 @@ main(int argc, char **argv) {
     conf->service_enable_http = SERVICE_STATUS_UNKNOWN;
     conf->service_enable_smtp = SERVICE_STATUS_UNKNOWN;
 
-    /* Read command line arguments (override CLI args) */
+    /* Read command line arguments */
     cli_args = g_strdupv(argv);
     cli_arguments_parse(cli_args, conf);
     g_strfreev(cli_args);
