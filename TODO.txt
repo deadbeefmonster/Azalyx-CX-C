@@ -36,6 +36,7 @@ Version 1.0 - "Nosferatu" (https://www.youtube.com/watch?v=ZyyZlSw0yNs)
 - agent kill date/time
 - agent kill conditions
 - agent command queue
-- agent multiple server service communications:
+- agent using multiple server service communications
 
 - server command queue
+
