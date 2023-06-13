@@ -101,9 +101,9 @@ service_dns_parse_request(guchar *buffer,
     request->header->ra = (guint) flags & header_mask_ra;
     request->header->ra = request->header->ra >> 7;
     request->header->z = (guint) flags & header_mask_z;
-    request->header->ra = request->header->ra >> 4;
+    request->header->z = request->header->z >> 4;
     request->header->rcode = (guint) flags & header_mask_rcode;
-    request->header->ra = request->header->ra >> 0;
+    request->header->rcode = request->header->rcode >> 0;
 
     g_debug("flags                   = %.16x", flags);
     g_debug("request->header->qr     = %.16x -> %.16x (%i)",
