@@ -1,8 +1,12 @@
 Version 1.0 - "Nosferatu" (https://www.youtube.com/watch?v=ZyyZlSw0yNs)
+
+=== Server ============================================================
+Database:
 - sqlite support
 - mysql support
 - postgresql support
 
+Protocol:
 - http support
 - https support
 - ftp support
@@ -16,21 +20,40 @@ Version 1.0 - "Nosferatu" (https://www.youtube.com/watch?v=ZyyZlSw0yNs)
 - dns over tcp
 - dns over https
 
+Users:
 - admin session support
 - client session support
 
+Encryption:
 - rsa encryption support
 - aes encryption support
 
+API:
 - server API with swagger file
 
+Data Handling:
 - data chunker
 - data transmission
 - data modification
 - data serialization
 
+Plugins:
 - plugin support
 
+Queueing:
+- server command queue
+
+=== Server Interface ==================================================
+Console:
+- REPL CLI tool [for testing?]
+
+GUI:
+- Qt? Tk? [NOT WEB]
+
+MUD:
+- Sounds odd, but perhaps a MUD interface with GCMP?
+
+=== Agent =============================================================
 - agent relaying
 - agent time/day schedule
 - agent kill date/time
@@ -38,5 +61,4 @@ Version 1.0 - "Nosferatu" (https://www.youtube.com/watch?v=ZyyZlSw0yNs)
 - agent command queue
 - agent using multiple server service communications
 
-- server command queue
 
