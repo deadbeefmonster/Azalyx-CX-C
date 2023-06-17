@@ -111,7 +111,7 @@ for actual red team operators:
 
 - Multi-platform via the glib library, libevent, and cmake build
   system. I primarily care about Microsoft Windows, GNU/Linux
-  [targeting Ubuntu, Kali, and Rocky), macOS (my primary development
+  (targeting Ubuntu, Kali, and Rocky), macOS (my primary development
   OS), and hopefully OpenBSD.
 
 - Open source, because there's no business here. If anything it would
@@ -124,9 +124,9 @@ for actual red team operators:
 I'm not a fan of Markdown, so everything will be in plaintext, so as
 to be read from a terminal.
 
-My primary editors/coding tools are GNU Emacs (console only) and CLion (which
-is an amazing IDE). I know many other graybeards hate the idea of
-using and IDE, but they're simply missing out. CLion makes life so
+My primary editors/coding tools are GNU Emacs (console only) and CLion
+(which is an amazing IDE). I know many other graybeards hate the idea
+of using and IDE, but they're simply missing out. CLion makes life so
 much easier.
 
 Using cmake because this isn't the 1990s anymore. I don't edit
