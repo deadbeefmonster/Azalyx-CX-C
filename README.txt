@@ -1,3 +1,9 @@
+** Note ****************************************************************
+
+This project is far from complete and may never be complete. It will
+likely have a flurry of commits and then nothing for weeks. This is a
+hobby and not a job.
+
 
 ** Purpose *************************************************************
 
@@ -64,8 +70,9 @@ for actual red team operators:
   start (the three I know best)
 
 - Multi-platform via the glib library, libevent, and cmake build
-  system. I primarily care about Microsoft Windows, GNU/Linux, and
-  OpenBSD.
+  system. I primarily care about Microsoft Windows, GNU/Linux
+  [targeting Ubuntu, Kali, and Rocky), macOS (my primary development
+  OS), and hopefully OpenBSD.
 
 - Open source, because there's no business here. If anything it would
   help the "brand equity" for myself by being a proof of work to the
@@ -76,3 +83,11 @@ for actual red team operators:
 
 I'm not a fan of Markdown, so everything will be in plaintext, so as
 to be read from a terminal.
+
+My primary editors/coding tools are GNU Emacs (console only) and CLion (which
+is an amazing IDE). I know many other graybeards hate the idea of
+using and IDE, but they're simply missing out. CLion makes life so
+much easier.
+
+Using cmake because this isn't the 1990s anymore. I don't edit
+printcap files anymore either. It's time to move forward.
