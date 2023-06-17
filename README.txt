@@ -4,6 +4,13 @@ This project is far from complete and may never be complete. It will
 likely have a flurry of commits and then nothing for weeks. This is a
 hobby and not a job.
 
+The main branch for this git repo is called 'carmilla' after what
+appears to be the first vampire in written word form. Carmilla
+predates Dracula. If it is true or not, I'm a vampire fan. The 1.0
+release of this software will be called Nosferatu.
+
+Keep calm and uphold the masquerade. 
+
 
 ** Purpose *************************************************************
 
