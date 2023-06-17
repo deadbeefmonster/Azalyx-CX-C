@@ -126,7 +126,7 @@ to be read from a terminal.
 
 My primary editors/coding tools are GNU Emacs (console only) and CLion
 (which is an amazing IDE). I know many other graybeards hate the idea
-of using and IDE, but they're simply missing out. CLion makes life so
+of using an IDE, but they're simply missing out. CLion makes life so
 much easier.
 
 Using cmake because this isn't the 1990s anymore. I don't edit
