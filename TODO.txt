@@ -11,7 +11,8 @@ Protocol:
 - https support
 - ftp support
 - smtp support
-- imcp support
+- snmp support
+- icmp support
 - imap support
 - raw UDP support
 - raw TCP support
@@ -32,10 +33,10 @@ API:
 - server API with swagger file
 
 Data Handling:
-- data chunker
-- data transmission
-- data modification
-- data serialization
+- data chunker (handles "packets" of data that will be reassembled later)
+- data transmission (abstraction to handle data being passed off to a service or queue to be serviced)
+- data modification (compression, encryption, etc)
+- data serialization (unsure how best to do this yet or if it is needed)
 
 Plugins:
 - plugin support
