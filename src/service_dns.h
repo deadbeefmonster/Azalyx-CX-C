@@ -61,14 +61,14 @@ struct dns_request {
 #define DNS_QTYPE_ALL 255    /* A request for all records */
 
 /* RFC 1035, section 4.1.1 */
-static const guint header_mask_qr = 0x8000; /* 1000 0000 0000 0000 */
+static const guint header_mask_qr     = 0x8000; /* 1000 0000 0000 0000 */
 static const guint header_mask_opcode = 0x7800; /* 0111 1000 0000 0000 */
-static const guint header_mask_aa = 0x0400; /* 0000 0100 0000 0000 */
-static const guint header_mask_tc = 0x0200; /* 0000 0010 0000 0000 */
-static const guint header_mask_rd = 0x0100; /* 0000 0001 0000 0000 */
-static const guint header_mask_ra = 0x0080; /* 0000 0000 1000 0000 */
-static const guint header_mask_z = 0x0070; /* 0000 0000 0111 0000 */
-static const guint header_mask_rcode = 0x000F; /* 0000 0000 0000 1111 */
+static const guint header_mask_aa     = 0x0400; /* 0000 0100 0000 0000 */
+static const guint header_mask_tc     = 0x0200; /* 0000 0010 0000 0000 */
+static const guint header_mask_rd     = 0x0100; /* 0000 0001 0000 0000 */
+static const guint header_mask_ra     = 0x0080; /* 0000 0000 1000 0000 */
+static const guint header_mask_z      = 0x0070; /* 0000 0000 0111 0000 */
+static const guint header_mask_rcode  = 0x000F; /* 0000 0000 0000 1111 */
 
 
 void service_dns_callback_conn_new(evutil_socket_t, short, void *);
