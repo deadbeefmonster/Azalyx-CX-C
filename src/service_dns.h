@@ -73,10 +73,10 @@ static const guint header_mask_rcode  = 0x000F; /* 0000 0000 0000 1111 */
 
 void service_dns_callback_conn_new(evutil_socket_t, short, void *);
 
-void service_dns_debug_request(struct dns_request *);
+void service_dns_request_debug(struct dns_request *request);
 
-void service_dns_parse_request(guchar *, struct dns_request *, glong);
+void service_dns_request_parse(guchar *buffer, struct dns_request *request, glong request_size);
 
-void service_dns_process_request(struct dns_request *);
+void service_dns_request_process(struct dns_request *request);
 
 #endif //BLITZKRIEG_SERVICE_DNS_H
