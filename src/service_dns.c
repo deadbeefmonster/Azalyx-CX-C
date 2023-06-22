@@ -5,26 +5,27 @@
 
 void
 service_dns_debug_request(struct dns_request *request) {
-    g_debug("request->header->id = %i", request->header->id);
-    g_debug("request->header->qr = %i", request->header->qr);
-    g_debug("request->header->opcode = %i", request->header->opcode);
-    g_debug("request->header->aa = %i", request->header->aa);
-    g_debug("request->header->tc = %i", request->header->tc);
-    g_debug("request->header->rd = %i", request->header->rd);
-    g_debug("request->header->ra = %i", request->header->ra);
-    g_debug("request->header->z = %i", request->header->z);
-    g_debug("request->header->rcode = %i", request->header->rcode);
-    g_debug("request->header->qdcount = %i", request->header->qdcount);
-    g_debug("request->header->ancount = %i", request->header->ancount);
-    g_debug("request->header->nscount = %i", request->header->nscount);
-    g_debug("request->header->arcount = %i", request->header->arcount);
+    g_debug("service_dns_debug_request(): request->header->id = %i", request->header->id);
+    g_debug("service_dns_debug_request(): request->header->qr = %i", request->header->qr);
+    g_debug("service_dns_debug_request(): request->header->opcode = %i", request->header->opcode);
+    g_debug("service_dns_debug_request(): request->header->aa = %i", request->header->aa);
+    g_debug("service_dns_debug_request(): request->header->tc = %i", request->header->tc);
+    g_debug("service_dns_debug_request(): request->header->rd = %i", request->header->rd);
+    g_debug("service_dns_debug_request(): request->header->ra = %i", request->header->ra);
+    g_debug("service_dns_debug_request(): request->header->z = %i", request->header->z);
+    g_debug("service_dns_debug_request(): request->header->rcode = %i", request->header->rcode);
+    g_debug("service_dns_debug_request(): request->header->qdcount = %i", request->header->qdcount);
+    g_debug("service_dns_debug_request(): request->header->ancount = %i", request->header->ancount);
+    g_debug("service_dns_debug_request(): request->header->nscount = %i", request->header->nscount);
+    g_debug("service_dns_debug_request(): request->header->arcount = %i", request->header->arcount);
 
-    for (guint i = (request->header->qdcount - 1); i > -1; i--) {
+    int i = (int) request->header->qdcount - 1;
+    for(;i > -1; i--) {
         struct dns_question *question;
         question = g_array_index(request->questions, struct dns_question *, i);
-        g_debug("question->qname->str  = %s (idx = %i)", question->qname->str, i);
-        g_debug("question->qtype  = %i (idx = %i)", question->qtype, i);
-        g_debug("question->qclass = %i (idx = %i)", question->qclass, i);
+        g_debug("service_dns_debug_request(): question->qname->str  = %s (idx = %i)", question->qname->str, i);
+        g_debug("service_dns_debug_request(): question->qtype  = %i (idx = %i)", question->qtype, i);
+        g_debug("service_dns_debug_request(): question->qclass = %i (idx = %i)", question->qclass, i);
     }
 }
 
@@ -89,7 +90,6 @@ service_dns_parse_request(guchar *buffer,
 
     /* Mask the value and bit shift, so it is at the start of the bytes. */
     request->header->qr = (guint) flags & header_mask_qr;
-    request->header->aa = request->header->aa >> 15;
     request->header->opcode = (guint) flags & header_mask_opcode;
     request->header->opcode = request->header->opcode >> 11;
     request->header->aa = (guint) flags & header_mask_aa;
@@ -183,15 +183,23 @@ service_dns_parse_request(guchar *buffer,
         }
         question->qname = qname;
 
+        g_debug("question->qname = %s", question->qname->str);
+
         question->qtype = (uint8_t) buffer[buffer_count];
         buffer_count++;
         question->qtype += (uint8_t) buffer[buffer_count];
         buffer_count++;
 
+        g_debug("question->qtype = %i", question->qtype);
+
+
         question->qclass = (uint8_t) buffer[buffer_count];
         buffer_count++;
         question->qclass += (uint8_t) buffer[buffer_count];
         buffer_count++;
+
+        g_debug("question->qclass = %i", question->qclass);
+
 
         g_array_append_val(request->questions, question);
     }
@@ -199,10 +207,20 @@ service_dns_parse_request(guchar *buffer,
 
 void
 service_dns_process_request(struct dns_request *request) {
+    g_debug("in service_dns_process_request");
+    g_debug("service_dns_process_request(): request->header->qdcount = %i", request->header->qdcount);
+
     /* Iterate through each question */
-    for (guint i = (request->header->qdcount - 1); i > -1; i--) {
+    int i = (int) request->header->qdcount - 1;
+    g_debug("service_dns_process_request(): before for: i = %i", i);
+    for(;i > -1; i--) {
+        g_debug("service_dns_process_request(): in for: i = %i", i);
+
         struct dns_question *question;
         question = g_array_index(request->questions, struct dns_question *, i);
+
+
+        g_debug("service_dns_process_request(): question->qtype = %i", question->qtype);
 
         if (question->qtype == DNS_QTYPE_A) {
             g_debug("A Request, expecting at least one IP for '%s'",
@@ -249,6 +267,7 @@ service_dns_process_request(struct dns_request *request) {
             g_warning("No idea what type of QTYPE this is: %i", question->qtype);
         }
     }
+    g_debug("service_dns_process_request(): done processing");
 }
 
 void
