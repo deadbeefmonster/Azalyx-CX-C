@@ -1,33 +1,43 @@
 Version 1.0 - "Nosferatu" (https://www.youtube.com/watch?v=ZyyZlSw0yNs)
 
-=== Server ============================================================
-Database:
-- sqlite support
-- mysql support
-- postgresql support
+While I wish this was an MVP list for a 1.0, it certainly has a lot of "wishlist" items that are more fun for me to
+code rather than particularly useful for red team operators. At the end of the day, I'll code what is more fun for me,
+and I don't care if I ever make it to a 1.0 release with all the things people care about.
 
-Protocol:
-- http support
-- https support
-- ftp support
-- smtp support
-- snmp support
-- icmp support
-- imap support
-- raw UDP support
-- raw TCP support
-- SMB support
-- dns over udp
-- dns over tcp
-- dns over https
+=== Server ============================================================
+Data Storage:
+- SQLite (relational DB, file)
+- SQLite (relational DB, memory)
+- MySQL (relational DB, network)
+- PostgreSQL (relational DB, network)
+
+Services:
+- DNS over UDP
+- raw UDP
+- raw TCP
+- HTTP
+- HTTPS
+- FTP (passive and/or active? unsure)
+- SMTP
+- SNMP
+- ICMP (questionable, would be neat to do)
+- IMAP
+- SMB (perhaps agent-only using named pipes? seems silly to run an SMB server on the Internet)
+- DNS over TCP
+- DNS over HTTPS
+- Unix socket (local, obviously)
+- file watch (local)
+- file watch (S3)
+- file watch (Dropbox)
+- file watch (Google Drive)
 
 Users:
-- admin session support
-- client session support
+- admin sessions (operators)
+- client sessions (agents)
 
 Encryption:
-- rsa encryption support
-- aes encryption support
+- RSA encryption
+- AES encryption
 
 API:
 - server API with swagger file
@@ -37,12 +47,15 @@ Data Handling:
 - data transmission (abstraction to handle data being passed off to a service or queue to be serviced)
 - data modification (compression, encryption, etc)
 - data serialization (unsure how best to do this yet or if it is needed)
+- data envelopes (think SOAP envelopes, but without the bloat)
 
 Plugins:
-- plugin support
+- dynamic plugin support at all levels using GModule from glib
+- dynamic plugin support using a scripting language? Unsure how to do that, would have to bolt on Lua or Python, not
+  sure I want to do that
 
 Queueing:
-- server command queue
+- server command queues for agent client sessions
 
 === Server Interface ==================================================
 Console:
@@ -51,15 +64,13 @@ Console:
 GUI:
 - Qt? Tk? [NOT WEB]
 
-MUD:
-- Sounds odd, but perhaps a MUD interface with GCMP?
 
 === Agent =============================================================
-- agent relaying
-- agent time/day schedule
-- agent kill date/time
-- agent kill conditions
-- agent command queue
-- agent using multiple server service communications
+- agent relaying (agent client sessions relaying through other agents)
+- agent time/day schedule (time when agent is "alive")
+- agent kill date/time (automatic kill switch for agents to delete themselves based on timestamp)
+- agent kill conditions (automatic kill switch for agents based on specific conditions agents can discern)
+- agent command queue (command queues to send to a server via agent sessions)
+- agent using multiple server service communications (playbook for how to attempt to communicate back to the server)
 
 
