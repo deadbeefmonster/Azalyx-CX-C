@@ -1,8 +1,10 @@
 Version 1.0 - "Nosferatu" (https://www.youtube.com/watch?v=ZyyZlSw0yNs)
 
-While I wish this was an MVP list for a 1.0, it certainly has a lot of "wishlist" items that are more fun for me to
-code rather than particularly useful for red team operators. At the end of the day, I'll code what is more fun for me,
-and I don't care if I ever make it to a 1.0 release with all the things people care about.
+While I wish this was an MVP list for a 1.0, it certainly has a lot of
+"wishlist" items that are more fun for me to code rather than
+particularly useful for red team operators. At the end of the day,
+I'll code what is more fun for me, and I don't care if I ever make it
+to a 1.0 release with all the things people care about.
 
 === Server ============================================================
 Data Storage:
@@ -22,7 +24,8 @@ Services:
 - SNMP
 - ICMP (questionable, would be neat to do)
 - IMAP
-- SMB (perhaps agent-only using named pipes? seems silly to run an SMB server on the Internet)
+- SMB (perhaps agent-only using named pipes? seems silly to run an SMB
+  server on the Internet)
 - DNS over TCP
 - DNS over HTTPS
 - Unix socket (local, obviously)
@@ -44,15 +47,17 @@ API:
 
 Data Handling:
 - data chunker (handles "packets" of data that will be reassembled later)
-- data transmission (abstraction to handle data being passed off to a service or queue to be serviced)
+- data transmission (abstraction to handle data being passed off to a
+  service or queue to be serviced)
 - data modification (compression, encryption, etc)
 - data serialization (unsure how best to do this yet or if it is needed)
 - data envelopes (think SOAP envelopes, but without the bloat)
 
 Plugins:
 - dynamic plugin support at all levels using GModule from glib
-- dynamic plugin support using a scripting language? Unsure how to do that, would have to bolt on Lua or Python, not
-  sure I want to do that
+- dynamic plugin support using a scripting language? Unsure how to do
+  that, would have to bolt on Lua or Python, not sure I want to do
+  that
 
 Queueing:
 - server command queues for agent client sessions
@@ -68,9 +73,13 @@ GUI:
 === Agent =============================================================
 - agent relaying (agent client sessions relaying through other agents)
 - agent time/day schedule (time when agent is "alive")
-- agent kill date/time (automatic kill switch for agents to delete themselves based on timestamp)
-- agent kill conditions (automatic kill switch for agents based on specific conditions agents can discern)
-- agent command queue (command queues to send to a server via agent sessions)
-- agent using multiple server service communications (playbook for how to attempt to communicate back to the server)
+- agent kill date/time (automatic kill switch for agents to delete
+  themselves based on timestamp)
+- agent kill conditions (automatic kill switch for agents based on
+  specific conditions agents can discern)
+- agent command queue (command queues to send to a server via agent
+  sessions)
+- agent using multiple server service communications (playbook for how
+  to attempt to communicate back to the server)
 
 
