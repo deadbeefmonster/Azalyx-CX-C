@@ -22,25 +22,13 @@ Keep calm and uphold the masquerade.
 
 ** On Programming Language Choice **************************************
 
-Additionally, many people seem to have opinions about me coding this
-in C, instead of like Rust or Golang. I know those languages and
+Many people seem to have opinions about me coding this in C, instead
+of a safer alternative like Rust or Golang. I know those languages and
 purposefully chose not to use them.
 
-I like Rust, but the entire crate community is a PITA because there
-are breaking changes all the time with tons of libraries and generally
-need to version lock library versions so they work well
-together. Additionally 'unsafe' is used all over the place, sorta
-dispelling the whole 'safe' part of Rust, especially in areas that
-matter. I have mastered working with the borrow checker,
-though... there should be a trophy for that.
-
-I don't really care for Golang, it is similar to Rust but has the same
-issue with libraries, but you get an even crappier binary.
-
-I like C and kernel programming is also a bucket list item of mine, so
-getting good at C and low-level interactions is a primary
-motivator... especially over development speed and memory/thread
-safety.
+I like C, and kernel programming is also a bucket list item of mine,
+so getting good at C and low-level interactions is a primary
+motivator.
 
 It's OK if you disagree: this isn't your project :)
 
