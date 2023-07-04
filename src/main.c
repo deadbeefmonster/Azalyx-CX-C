@@ -12,17 +12,6 @@
 
 #define VERSION "v0.1.0"
 
-GString *bytes_to_hex(unsigned char *bytes, int bytes_len) {
-    GString *hex_data = g_string_new("");
-    char hex_datum[2] = {0};
-
-    for (int i = 0; i != bytes_len; i++) {
-        snprintf(hex_datum, 2, "%02hhX", bytes[i]);
-        g_string_append(hex_data, hex_datum);
-    }
-
-    return hex_data;
-}
 
 int
 main(int argc, char **argv) {
