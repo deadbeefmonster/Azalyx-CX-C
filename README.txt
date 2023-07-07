@@ -1,9 +1,5 @@
 TL;DR: I need to shut up and hack.
 
-Yes, that's from Theo de Raadt/OpenBSD, and one of my favorite
-quotes... and something I need to do way more often. Look at this, I
-typed out this long README without coding a dang thing in the early
-morning hours of a Saturday.
 
 
 ** Note ****************************************************************
@@ -99,13 +95,16 @@ for actual red team operators:
 
 - Multi-platform via the glib library, libevent, and cmake build
   system. I primarily care about Microsoft Windows, GNU/Linux
-  (targeting Ubuntu, Kali, and Rocky), macOS (my primary development
-  OS), and hopefully OpenBSD.
+  (targeting Ubuntu and Kali), macOS (my primary development
+  OS), and OpenBSD. If it works on all those it should work everywhere.
 
 - Open source, because there's no business here. If anything it would
   help the "brand equity" for myself by being a proof of work to the
   public.
 
+- Docker build support for cross compilation?
+
+- Docker runtime support for running the C2 in a docker container?
 
 ** Misc ****************************************************************
 
