@@ -11,7 +11,7 @@ pkg_add git
 git clone https://github.com/deadbeefmonster/Blitzkrieg.git
 
 ## Create a build directory
-mkdir - build
+mkdir -p build
 cd build
 
 ## Build the project
