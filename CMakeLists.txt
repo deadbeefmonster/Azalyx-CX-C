@@ -7,7 +7,9 @@ include(FindPkgConfig)
 pkg_check_modules(GLIB REQUIRED IMPORTED_TARGET glib-2.0)
 pkg_check_modules(LIBEVENT REQUIRED IMPORTED_TARGET libevent)
 
-find_package(OpenSSL REQUIRED)
+#find_package(OpenSSL REQUIRED)
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/CMake;${CMAKE_MODULE_PATH}")
+find_package(LibreSSL REQUIRED)
 
 include_directories(${LIBEVENT_INCLUDE_DIRS} ${GLIB_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR})
 
@@ -21,4 +23,5 @@ add_executable(${PROJECT_NAME}
         src/service_dns.c src/service_dns.h
         src/crypto_aes.c src/crypto_aes.h
         src/crypto_rsa.c src/crypto_rsa.h)
-target_link_libraries(${PROJECT_NAME} PkgConfig::GLIB PkgConfig::LIBEVENT OpenSSL::SSL OpenSSL::Crypto)
+#target_link_libraries(${PROJECT_NAME} PkgConfig::GLIB PkgConfig::LIBEVENT OpenSSL::SSL OpenSSL::Crypto)
+target_link_libraries(${PROJECT_NAME} PkgConfig::GLIB PkgConfig::LIBEVENT LibreSSL::SSL LibreSSL::Crypto)

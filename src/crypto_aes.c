@@ -4,13 +4,13 @@ int aes_generate_new_key_iv(struct aes_key *aes_key) {
     int status = 1;
 
     // Generate AES key bytes
-    if (1 != RAND_priv_bytes(aes_key->key, 32)) {
+    if (1 != RAND_bytes(aes_key->key, 32)) {
         status = 0;
         // Error handling
     }
 
     // Generate AES iv bytes
-    if (1 != RAND_priv_bytes(aes_key->iv, 16)) {
+    if (1 != RAND_bytes(aes_key->iv, 16)) {
         status = 0;
         // Error handling
     }
