@@ -51,18 +51,6 @@ service_dns_request_parse(guchar *buffer,
     request->header->rcode = 0;
 
     /* HEADER */
-    /*id      = (guint) buffer[0] << 8 | buffer[1] << 0;
-    flags   = (guint) buffer[2] << 8 | buffer[3] << 0;
-    qdcount = (guint) buffer[4] << 8 | buffer[5] << 0;
-    ancount = (guint) buffer[6] << 8 | buffer[7] << 0;
-    nscount = (guint) buffer[8] << 8 | buffer[9] << 0;
-    arcount = (guint) buffer[10] << 8 | buffer[11] << 0;
-    g_debug("bitwize: id=%x", id);
-    g_debug("bitwize: flags=%x", flags);
-    g_debug("bitwize: qdcount=%x", qdcount);
-    g_debug("bitwize: ancount=%x", ancount);
-    g_debug("bitwize: nscount=%x", nscount);
-    g_debug("bitwize: arcount=%x", arcount);*/
     memcpy(&id, &buffer[0], 2);
     memcpy(&flags, &buffer[2], 2);
     memcpy(&qdcount, &buffer[4], 2);
@@ -75,12 +63,6 @@ service_dns_request_parse(guchar *buffer,
     ancount = ntohs(ancount);
     nscount = ntohs(nscount);
     arcount = ntohs(arcount);
-    /*g_debug("memcpy: id=%x", id);
-    g_debug("memcpy: flags=%x", flags);
-    g_debug("memcpy: qdcount=%x", qdcount);
-    g_debug("memcpy: ancount=%x", ancount);
-    g_debug("memcpy: nscount=%x", nscount);
-    g_debug("memcpy: arcount=%x", arcount);*/
 
     request->header->id = id;
     request->header->qdcount = qdcount;
@@ -105,62 +87,62 @@ service_dns_request_parse(guchar *buffer,
     request->header->rcode = (guint) flags & header_mask_rcode;
     request->header->rcode = request->header->rcode >> 0;
 
-    g_debug("flags                   = %.16x", flags);
-    g_debug("request->header->qr     = %.16x -> %.16x (%i)",
-            header_mask_qr,
-            request->header->qr,
-            request->header->qr);
-    g_debug("flags                   = %.16x", flags);
-    g_debug("request->header->opcode = %.16x -> %.16x (%i)",
-            header_mask_opcode,
-            request->header->opcode,
-            request->header->opcode);
-    g_debug("flags                   = %.16x", flags);
-    g_debug("request->header->aa     = %.16x -> %.16x (%i)",
-            header_mask_aa,
-            request->header->aa,
-            request->header->aa);
-    g_debug("flags                   = %.16x", flags);
-    g_debug("request->header->tc     = %.16x -> %.16x (%i)",
-            header_mask_tc,
-            request->header->tc,
-            request->header->tc);
-    g_debug("flags                   = %.16x", flags);
-    g_debug("request->header->rd     = %.16x -> %.16x (%i)",
-            header_mask_rd,
-            request->header->rd,
-            request->header->rd);
-    g_debug("flags                   = %.16x", flags);
-    g_debug("request->header->ra     = %.16x -> %.16x (%i)",
-            header_mask_ra,
-            request->header->ra,
-            request->header->ra);
-    g_debug("flags                   = %.16x", flags);
-    g_debug("request->header->z      = %.16x -> %.16x (%i)",
-            header_mask_z,
-            request->header->z,
-            request->header->z);
-    g_debug("flags                   = %.16x", flags);
-    g_debug("request->header->rcode  = %.16x -> %.16x (%i)",
-            header_mask_rcode,
-            request->header->rcode,
-            request->header->rcode);
-
-    g_debug("request->header->id        = %.16x, %i",
-            request->header->id,
-            request->header->id);
-    g_debug("request->header->qdcount   = %.16x, %i",
-            request->header->qdcount,
-            request->header->qdcount);
-    g_debug("request->header->ancount   = %.16x, %i",
-            request->header->ancount,
-            request->header->ancount);
-    g_debug("request->header->nscount   = %.16x, %i",
-            request->header->nscount,
-            request->header->nscount);
-    g_debug("request->header->arcount   = %.16x, %i",
-            request->header->arcount,
-            request->header->arcount);
+//    g_debug("flags                   = %.16x", flags);
+//    g_debug("request->header->qr     = %.16x -> %.16x (%i)",
+//            header_mask_qr,
+//            request->header->qr,
+//            request->header->qr);
+//    g_debug("flags                   = %.16x", flags);
+//    g_debug("request->header->opcode = %.16x -> %.16x (%i)",
+//            header_mask_opcode,
+//            request->header->opcode,
+//            request->header->opcode);
+//    g_debug("flags                   = %.16x", flags);
+//    g_debug("request->header->aa     = %.16x -> %.16x (%i)",
+//            header_mask_aa,
+//            request->header->aa,
+//            request->header->aa);
+//    g_debug("flags                   = %.16x", flags);
+//    g_debug("request->header->tc     = %.16x -> %.16x (%i)",
+//            header_mask_tc,
+//            request->header->tc,
+//            request->header->tc);
+//    g_debug("flags                   = %.16x", flags);
+//    g_debug("request->header->rd     = %.16x -> %.16x (%i)",
+//            header_mask_rd,
+//            request->header->rd,
+//            request->header->rd);
+//    g_debug("flags                   = %.16x", flags);
+//    g_debug("request->header->ra     = %.16x -> %.16x (%i)",
+//            header_mask_ra,
+//            request->header->ra,
+//            request->header->ra);
+//    g_debug("flags                   = %.16x", flags);
+//    g_debug("request->header->z      = %.16x -> %.16x (%i)",
+//            header_mask_z,
+//            request->header->z,
+//            request->header->z);
+//    g_debug("flags                   = %.16x", flags);
+//    g_debug("request->header->rcode  = %.16x -> %.16x (%i)",
+//            header_mask_rcode,
+//            request->header->rcode,
+//            request->header->rcode);
+//
+//    g_debug("request->header->id        = %.16x, %i",
+//            request->header->id,
+//            request->header->id);
+//    g_debug("request->header->qdcount   = %.16x, %i",
+//            request->header->qdcount,
+//            request->header->qdcount);
+//    g_debug("request->header->ancount   = %.16x, %i",
+//            request->header->ancount,
+//            request->header->ancount);
+//    g_debug("request->header->nscount   = %.16x, %i",
+//            request->header->nscount,
+//            request->header->nscount);
+//    g_debug("request->header->arcount   = %.16x, %i",
+//            request->header->arcount,
+//            request->header->arcount);
 
     /* QUESTIONS */
     gint buffer_count = 12;
@@ -183,14 +165,14 @@ service_dns_request_parse(guchar *buffer,
         }
         question->qname = qname;
 
-        g_debug("question->qname = %s", question->qname->str);
+//        g_debug("question->qname = %s", question->qname->str);
 
         question->qtype = (uint8_t) buffer[buffer_count];
         buffer_count++;
         question->qtype += (uint8_t) buffer[buffer_count];
         buffer_count++;
 
-        g_debug("question->qtype = %i", question->qtype);
+//        g_debug("question->qtype = %i", question->qtype);
 
 
         question->qclass = (uint8_t) buffer[buffer_count];
@@ -198,7 +180,7 @@ service_dns_request_parse(guchar *buffer,
         question->qclass += (uint8_t) buffer[buffer_count];
         buffer_count++;
 
-        g_debug("question->qclass = %i", question->qclass);
+//        g_debug("question->qclass = %i", question->qclass);
 
 
         g_array_append_val(request->questions, question);
