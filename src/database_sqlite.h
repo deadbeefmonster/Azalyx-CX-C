@@ -118,23 +118,48 @@ struct database_data_envelope* database_get_envelope_by_uuid(GString*);
 
 gboolean database_set_envelope_headers(struct database_data_envelope_headers*);
 struct database_data_envelope_headers* database_get_envelope_headers_by_id(gint);
-struct database_data_envelope_headers* database_get_envelope_headers_by_envelope(struct database_data_envelope*);
+/*
+ * Returns a GArray of struct database_data_envelope_headers*
+ */
+GArray* database_get_envelope_headers_by_envelope(struct database_data_envelope*);
+gboolean database_get_envelope_headers_by_envelope_free(GArray*);
 
 gboolean database_set_envelope_body(struct database_data_envelope_body*);
 struct database_data_envelope_body* database_get_envelope_body_by_id(gint);
-struct database_data_envelope_body* database_get_envelope_body_by_envelope(struct database_data_envelope*);
+/*
+ * Returns a GArray of struct database_data_envelope_body*
+ */
+GArray * database_get_envelope_body_by_envelope(struct database_data_envelope*);
+gboolean database_get_envelope_body_by_envelope_free(GArray*);
 
 gboolean database_set_envelope_fault(struct database_data_envelope_fault*);
 struct database_data_envelope_fault* database_get_envelope_fault_by_id(gint);
-struct database_data_envelope_fault* database_get_envelope_fault_by_envelope(struct database_data_envelope*);
-struct database_data_envelope_fault* database_get_envelope_fault_by_envelope_body(struct database_data_envelope_body*);
+/*
+ * Returns a GArray of struct database_data_envelope_fault*
+ */
+GArray * database_get_envelope_fault_by_envelope(struct database_data_envelope*);
+gboolean database_get_envelope_fault_by_envelope_free(GArray*);
+GArray * database_get_envelope_fault_by_envelope_body(struct database_data_envelope_body*);
+gboolean database_get_envelope_fault_by_envelope_body_free(GArray*); /* Same thing, convenience */
+
+
 
 gboolean database_set_envelope_chunk(struct database_data_envelope_chunk*);
 struct database_data_envelope_chunk* database_get_envelope_chunk_by_id(gint);
-struct database_data_envelope_chunk* database_get_envelope_chunk_by_envelope(struct database_data_envelope*);
+/*
+ * Returns a GArray of struct database_data_envelope_chunk*
+ */
+GArray* database_get_envelope_chunk_by_envelope(struct database_data_envelope*);
+gboolean database_get_envelope_chunk_by_envelope_free(GArray*);
 
 gboolean database_set_queue(struct database_data_queue*);
 struct database_data_queue* database_get_queue_by_id(gint);
+/*
+ * Returns a GArray of struct database_data_queue*
+ */
+GArray * database_get_queue_by_session(struct database_data_session*);
+gboolean database_get_queue_by_session_free(GArray*);
+
 
 
 #endif //BLITZKRIEG_DATABASE_SQLITE_H
