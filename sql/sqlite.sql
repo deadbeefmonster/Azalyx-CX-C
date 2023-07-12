@@ -11,7 +11,7 @@ CREATE TABLE "log"
 drop table if exists "session";
 CREATE TABLE IF NOT EXISTS "session"
 (
-    id        INTEGER                            NOT NULL PRIMARY KEY AUTOINCREMENT,
+    id        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     uuid      text,
     "data"    TEXT,
     create_ts datetime DEFAULT current_timestamp NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS "session"
 drop table if exists service;
 create table if not exists "service"
 (
-    id        INTEGER                            NOT NULL PRIMARY KEY AUTOINCREMENT,
+    id        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name"    TEXT,
     "type"    TEXT,
     proto     TEXT,
