@@ -20,5 +20,7 @@ add_executable(${PROJECT_NAME}
         src/service_http.c src/service_http.h
         src/service_dns.c src/service_dns.h
         src/crypto_aes.c src/crypto_aes.h
-        src/crypto_rsa.c src/crypto_rsa.h src/database_sqlite.h src/database_sqlite.c)
+        src/crypto_rsa.c src/crypto_rsa.h
+        src/database_sqlite.c src/database_sqlite.h
+        )
 target_link_libraries(${PROJECT_NAME} PkgConfig::GLIB PkgConfig::LIBEVENT OpenSSL::SSL OpenSSL::Crypto)
