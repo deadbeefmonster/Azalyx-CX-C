@@ -8,7 +8,9 @@
 #include "cli_arguments.h"
 #include "configuration.h"
 #include "crypto_aes.h"
+#include "database_sqlite.h"
 #include "service.h"
+
 
 #define BLITZKRIEG_VERSION "v0.1.0"
 #define BLITZKRIEG_DEVELOPER "Christoff Humphries <christoff@deadbeef.monster>"
@@ -80,13 +82,6 @@ main(int argc, char **argv) {
     cli_args = g_strdupv(argv);
     cli_arguments_parse(cli_args, conf);
     g_strfreev(cli_args);
-
-
-
-
-    /*
-     * TESTING STUFF
-     */
 
 
     /* Service provisioning, setup, and registering. - Create sockets,
