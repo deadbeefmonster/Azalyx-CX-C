@@ -14,7 +14,7 @@
 
 #define AZALYXCX_VERSION "0.1.0"
 #define AZALYXCX_DEVELOPER "Christoff Humphries <christoff@deadbeef.monster>"
-#define AZALYXCX_COPYRIGHT "(c) 2023"
+#define AZALYXCX_COPYRIGHT "(c)2023"
 
 gboolean NO_COLOR = FALSE;
 
@@ -27,17 +27,9 @@ main(int argc, char **argv) {
         NO_COLOR = TRUE;
     }
 
-    if (NO_COLOR == TRUE) {
-        printf("%s %s\n", "AzalyxCX", AZALYXCX_VERSION);
-        printf("%s\n", "A protocol research and C coding project masquerading as a C2.");
-        printf("%s, %s\n\n\n", AZALYXCX_COPYRIGHT, AZALYXCX_DEVELOPER);
+    printf("\n%s v%s: A protocol research and C programming project.\n", "AzalyxCX", AZALYXCX_VERSION);
+    printf("%s, %s\n\n\n", AZALYXCX_COPYRIGHT, AZALYXCX_DEVELOPER);
 
-    } else {
-        printf("\033[38;5;201m%s v%s\n", "Azalyx CX", AZALYXCX_VERSION);
-        printf("\033[38;5;165m%s\n", "A protocol research and C coding project masquerading as a C2.");
-        printf("\033[38;5;168m%s, %s\n", AZALYXCX_COPYRIGHT, AZALYXCX_DEVELOPER);
-        printf("\n\n\E[0m");
-    }
     gchar **cli_args;                                        /* CLI arguments */
     struct settings *conf = g_slice_new(struct settings);    /* All settings */
     struct event_base *base;                                 /* LibEvent */
