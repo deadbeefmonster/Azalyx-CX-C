@@ -5,8 +5,8 @@
  * All configuration file stuff
  */
 
-#ifndef BLITZKRIEG_CONFIGURATION_H
-#define BLITZKRIEG_CONFIGURATION_H
+#ifndef AZALYXCX_CONFIGURATION_H
+#define AZALYXCX_CONFIGURATION_H
 
 #include <glib.h>
 #include <glib/gi18n.h>
@@ -24,4 +24,4 @@ struct settings {
 
 void load_configuration_file(struct settings *);
 
-#endif //BLITZKRIEG_CONFIGURATION_H
+#endif //AZALYXCX_CONFIGURATION_H

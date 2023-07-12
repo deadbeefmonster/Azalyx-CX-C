@@ -2,8 +2,8 @@
  * - https://wiki.openssl.org/index.php/EVP_Asymmetric_Encryption_and_Decryption_of_an_Envelope
  * - "Network Security with OpenSSL Cryptography for Secure Communications" book from O'Reilly Media
  */
-#ifndef BLITZKRIEG__CRYPTO_RSA_H_
-#define BLITZKRIEG__CRYPTO_RSA_H_
+#ifndef AZALYXCX__CRYPTO_RSA_H_
+#define AZALYXCX__CRYPTO_RSA_H_
 
 #include <glib.h>
 #include <openssl/evp.h>
@@ -23,4 +23,4 @@ int rsa_encrypt(EVP_PKEY *pkey,
 /* 2048 bit key */
 int rsa_new_key(EVP_PKEY *pkey, int bits);
 
-#endif //BLITZKRIEG__CRYPTO_RSA_H_
+#endif //AZALYXCX__CRYPTO_RSA_H_

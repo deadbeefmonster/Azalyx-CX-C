@@ -1,6 +1,6 @@
 /*
  * To show verbose and debug messages
- * G_MESSAGES_DEBUG=all ./Blitzkrieg ...
+ * G_MESSAGES_DEBUG=all ./AzalyxCX ...
  * https://people.gnome.org/~ryanl/glib-docs/glib-Message-Logging.html
  * Will control better with another logging manager, probably my own g_log handler.
  *

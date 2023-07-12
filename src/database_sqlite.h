@@ -1,6 +1,14 @@
+/*
+ * Note:
+ * - all timestamps are stored and passed around in structs as epoch integers.
+ * - uuid will be generated via https://docs.gtk.org/glib/func.uuid_string_random.html
+ * - uuid will be used when referencing things
+ *
+ */
 
-#ifndef BLITZKRIEG_DATABASE_SQLITE_H
-#define BLITZKRIEG_DATABASE_SQLITE_H
+
+#ifndef AZALYXCX_DATABASE_SQLITE_H
+#define AZALYXCX_DATABASE_SQLITE_H
 
 #include <glib.h>
 #include <glib/gi18n.h>
@@ -152,4 +160,4 @@ gboolean database_get_queue_by_session_free(GArray*);
 
 
 
-#endif //BLITZKRIEG_DATABASE_SQLITE_H
+#endif //AZALYXCX_DATABASE_SQLITE_H

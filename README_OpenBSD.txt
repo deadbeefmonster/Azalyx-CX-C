@@ -8,7 +8,7 @@ pkg_add libevent
 pkg_add git
 
 ## Get the repo
-git clone https://github.com/deadbeefmonster/Blitzkrieg.git
+git clone https://github.com/deadbeefmonster/AzalyxCX.git
 
 ## Create a build directory
 mkdir -p build
@@ -38,7 +38,7 @@ cmake output (example)
 -- Found OpenSSL: /usr/local/lib/eopenssl31/libcrypto.a (found version "3.1.0")
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/christoff/Blitzkrieg/build
+-- Build files have been written to: /home/christoff/AzalyxCX/build
 
 
 

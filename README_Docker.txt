@@ -2,9 +2,9 @@
 docker build -t blitzkreig:ubuntu23.04 .
 
 # Run the container
-docker run --rm -v "$(pwd):/blitzkrieg" --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -d --name blitzkrieg  -i blitzkreig:ubuntu23.04
+docker run --rm -v "$(pwd):/azalyxcx" --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -d --name azalyxcx  -i blitzkreig:ubuntu23.04
 
 # Build the package
-docker exec -it blitzkrieg /blitzkrieg/linux_build/build.sh
+docker exec -it azalyxcx /azalyxcx/linux_build/build.sh
 
 
