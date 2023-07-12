@@ -35,8 +35,8 @@ struct database_data_service {
 };
 
 struct database_data_request_response {
-    gint session_id; // database_data_session->id
-    gint service_id; // database_data_service->id
+    GString *session_uuid;
+    GString *service_uuid;
     GByteArray *request_bytes;
     GByteArray *response_bytes;
     GString *sender;
