@@ -120,7 +120,6 @@ gboolean database_set_envelope_headers(struct database_data_envelope_headers*);
 struct database_data_envelope_headers* database_get_envelope_headers_by_id(gint);
 struct database_data_envelope_headers* database_get_envelope_headers_by_envelope(struct database_data_envelope*);
 
-
 gboolean database_set_envelope_body(struct database_data_envelope_body*);
 struct database_data_envelope_body* database_get_envelope_body_by_id(gint);
 struct database_data_envelope_body* database_get_envelope_body_by_envelope(struct database_data_envelope*);
@@ -129,7 +128,6 @@ gboolean database_set_envelope_fault(struct database_data_envelope_fault*);
 struct database_data_envelope_fault* database_get_envelope_fault_by_id(gint);
 struct database_data_envelope_fault* database_get_envelope_fault_by_envelope(struct database_data_envelope*);
 struct database_data_envelope_fault* database_get_envelope_fault_by_envelope_body(struct database_data_envelope_body*);
-
 
 gboolean database_set_envelope_chunk(struct database_data_envelope_chunk*);
 struct database_data_envelope_chunk* database_get_envelope_chunk_by_id(gint);
