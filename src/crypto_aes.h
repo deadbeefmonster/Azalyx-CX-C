@@ -22,6 +22,6 @@ int aes_encrypt(unsigned char *plaintext, int plaintext_len, struct aes_key *aes
 
 int aes_decrypt(unsigned char *ciphertext, int ciphertext_len, struct aes_key *aes_key, unsigned char *plaintext);
 
-int aes_generate_new_key_iv(struct aes_key *aes_key);
+void aes_generate_new_key_iv(struct aes_key *aes_key);
 
 #endif //AZALYXCX_CRYPTO_AES_H

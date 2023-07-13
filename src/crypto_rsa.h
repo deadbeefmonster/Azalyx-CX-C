@@ -21,6 +21,6 @@ int rsa_encrypt(EVP_PKEY *pkey,
                 unsigned char *cipher_bytes);
 
 /* 2048 bit key */
-int rsa_new_key(EVP_PKEY *pkey, int bits);
+void rsa_new_key(EVP_PKEY *pkey, int bits);
 
 #endif //AZALYXCX__CRYPTO_RSA_H_

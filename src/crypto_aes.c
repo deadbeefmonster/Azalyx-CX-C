@@ -1,21 +1,15 @@
 #include "crypto_aes.h"
 
-int aes_generate_new_key_iv(struct aes_key *aes_key) {
-    int status = 1;
-
+void aes_generate_new_key_iv(struct aes_key *aes_key) {
     // Generate AES key bytes
     if (1 != RAND_priv_bytes(aes_key->key, 32)) {
-        status = 0;
-        // Error handling
+        g_error("1 != RAND_priv_bytes(aes_key->key, 32)");
     }
 
     // Generate AES iv bytes
     if (1 != RAND_priv_bytes(aes_key->iv, 16)) {
-        status = 0;
-        // Error handling
+        g_error("1 != RAND_priv_bytes(aes_key->iv, 16)");
     }
-
-    return status;
 }
 
 int aes_encrypt(unsigned char *plaintext, int plaintext_len, struct aes_key *aes_key, unsigned char *ciphertext) {
@@ -27,7 +21,7 @@ int aes_encrypt(unsigned char *plaintext, int plaintext_len, struct aes_key *aes
 
     /* Create and initialise the context */
     if (!(ctx = EVP_CIPHER_CTX_new())) {
-        // Error handling
+        g_error("!(ctx = EVP_CIPHER_CTX_new())");
     }
 
     /*
@@ -38,7 +32,7 @@ int aes_encrypt(unsigned char *plaintext, int plaintext_len, struct aes_key *aes
      * is 128 bits
      */
     if (1 != EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, aes_key->key, aes_key->iv)) {
-        // Error handling
+        g_error("1 != EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, aes_key->key, aes_key->iv)");
     }
 
 
@@ -47,7 +41,7 @@ int aes_encrypt(unsigned char *plaintext, int plaintext_len, struct aes_key *aes
      * EVP_EncryptUpdate can be called multiple times if necessary
      */
     if (1 != EVP_EncryptUpdate(ctx, ciphertext, &len, plaintext, plaintext_len)) {
-        // Error handling
+        g_error("1 != EVP_EncryptUpdate(ctx, ciphertext, &len, plaintext, plaintext_len)");
     }
     ciphertext_len = len;
 
@@ -57,7 +51,7 @@ int aes_encrypt(unsigned char *plaintext, int plaintext_len, struct aes_key *aes
      * this stage.
      */
     if (1 != EVP_EncryptFinal_ex(ctx, ciphertext + len, &len)) {
-        // Error handling
+        g_error("1 != EVP_EncryptFinal_ex(ctx, ciphertext + len, &len)");
     }
     ciphertext_len += len;
 
@@ -76,7 +70,7 @@ int aes_decrypt(unsigned char *ciphertext, int ciphertext_len, struct aes_key *a
 
     /* Create and initialise the context */
     if (!(ctx = EVP_CIPHER_CTX_new())) {
-        // Error handling
+        g_error("!(ctx = EVP_CIPHER_CTX_new())");
     }
 
     /*
@@ -87,7 +81,7 @@ int aes_decrypt(unsigned char *ciphertext, int ciphertext_len, struct aes_key *a
      * is 128 bits
      */
     if (1 != EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, aes_key->key, aes_key->iv)) {
-        // Error handling
+        g_error("1 != EVP_DecryptInit_ex(ctx, EVP_aes_256_cbc(), NULL, aes_key->key, aes_key->iv)");
     }
 
     /*
@@ -95,7 +89,7 @@ int aes_decrypt(unsigned char *ciphertext, int ciphertext_len, struct aes_key *a
      * EVP_DecryptUpdate can be called multiple times if necessary.
      */
     if (1 != EVP_DecryptUpdate(ctx, plaintext, &len, ciphertext, ciphertext_len)) {
-        // Error handling
+        g_error("1 != EVP_DecryptUpdate(ctx, plaintext, &len, ciphertext, ciphertext_len)");
     }
     plaintext_len = len;
 
@@ -104,7 +98,7 @@ int aes_decrypt(unsigned char *ciphertext, int ciphertext_len, struct aes_key *a
      * this stage.
      */
     if (1 != EVP_DecryptFinal_ex(ctx, plaintext + len, &len)) {
-        // Error handling
+        g_error("1 != EVP_DecryptFinal_ex(ctx, plaintext + len, &len)");
     }
     plaintext_len += len;
 
