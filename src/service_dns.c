@@ -190,17 +190,12 @@ service_dns_request_parse(guchar *buffer,
 void
 service_dns_request_process(struct dns_request *request) {
     g_debug("in service_dns_request_process");
-    g_debug("service_dns_request_process(): request->header->qdcount = %i", request->header->qdcount);
 
     /* Iterate through each question */
     int i = (int) request->header->qdcount - 1;
-    g_debug("service_dns_request_process(): before for: i = %i", i);
     for(;i >= 0; i--) {
-        g_debug("service_dns_request_process(): in for: i = %i", i);
-
         struct dns_question *question;
         question = g_array_index(request->questions, struct dns_question *, i);
-
 
         g_debug("service_dns_request_process(): question->qtype = %i", question->qtype);
 

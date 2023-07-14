@@ -1,6 +1,3 @@
-//
-// Created by Chris Humphries on 7/11/22.
-//
 
 #ifndef AZALYXCX_SERVICE_DNS_H
 #define AZALYXCX_SERVICE_DNS_H
