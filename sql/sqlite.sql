@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS envelope;
 CREATE TABLE envelope
 (
     id         INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    uuid       TEXT UNIQUE,
+    uuid       TEXT NOT NULL UNIQUE,
     data_bytes BLOB,
     create_ts  DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -11,7 +11,7 @@ DROP TABLE IF EXISTS envelope_body;
 CREATE TABLE envelope_body
 (
     id            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    uuid          TEXT,
+    uuid          TEXT NOT NULL UNIQUE,
     envelope_uuid TEXT REFERENCES envelope (uuid),
     data_bytes    BLOB,
     create_ts     DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -102,8 +102,8 @@ DROP TABLE IF EXISTS request_response;
 CREATE TABLE request_response
 (
     id             INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT,
-    session_uuid   INTEGER REFERENCES session (uuid),
-    service_uuid   INTEGER REFERENCES service (uuid),
+    session_uuid   TEXT REFERENCES session (uuid),
+    service_uuid   TEXT REFERENCES service (uuid),
     request_bytes  BLOB,
     response_bytes BLOB,
     sender         TEXT,
