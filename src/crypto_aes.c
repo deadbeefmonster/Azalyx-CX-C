@@ -2,13 +2,13 @@
 
 void aes_generate_new_key_iv(struct aes_key *aes_key) {
     // Generate AES key bytes
-    if (1 != RAND_priv_bytes(aes_key->key, 32)) {
-        g_error("1 != RAND_priv_bytes(aes_key->key, 32)");
+    if (1 != RAND_bytes(aes_key->key, 32)) {
+        g_error("1 != RAND_bytes(aes_key->key, 32)");
     }
 
     // Generate AES iv bytes
-    if (1 != RAND_priv_bytes(aes_key->iv, 16)) {
-        g_error("1 != RAND_priv_bytes(aes_key->iv, 16)");
+    if (1 != RAND_bytes(aes_key->iv, 16)) {
+        g_error("1 != RAND_bytes(aes_key->iv, 16)");
     }
 }
 
