@@ -85,8 +85,8 @@ struct database_data_queue {
 /* Table: request_response */
 struct database_data_request_response {
     guint32 id;
-    guint32 session_uuid; /* References database_data_session.uuid */
-    guint32 service_uuid; /* References database_data_service.uuid */
+    GString *session_uuid; /* References database_data_session.uuid */
+    GString *service_uuid; /* References database_data_service.uuid */
     GByteArray *request_bytes;
     GByteArray *response_bytes;
     GString *sender;
