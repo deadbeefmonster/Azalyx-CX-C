@@ -36,7 +36,8 @@ cli_arguments_parse(gchar **args, struct settings *conf) {
     context = g_option_context_new("");
     g_option_context_add_main_entries(context, cli_argument_options, NULL);
     if (!g_option_context_parse_strv(context, &args, &error)) {
-        g_error("command line argument parsing failed: %s\n", error->message);
+        fprintf(stderr, "command line argument parsing failed: %s\n", error->message);
+        exit(EXIT_FAILURE);
     }
     // Parse the configuration file
     if (cli_argument_configuration_file) {

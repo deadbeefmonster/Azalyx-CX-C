@@ -28,7 +28,8 @@ service_generate(gint service_type,
     } else if (service_proto == SERVICE_PROTO_UDP) {
         listener = socket(AF_INET, SOCK_DGRAM, 0);
     } else {
-        g_error("Unable to discern service proto '%i'", service_proto);
+        fprintf(stderr, "Unable to discern service proto '%i'\n", service_proto);
+        exit(EXIT_FAILURE);
     }
     evutil_make_socket_nonblocking(listener);
     data->socket = listener;
@@ -57,7 +58,7 @@ service_generate(gint service_type,
         } else {
             service_proto_str = g_string_new("UNKNOWN");
         }
-        fprintf(stderr, "bind() failed for proto %s service %s on port %i\n", service_proto_str->str, service_type_str->str, port);
+        fprintf(stderr, "FATAL ERROR: bind() failed for proto %s service %s on port %i\n", service_proto_str->str, service_type_str->str, port);
         exit(EXIT_FAILURE);
     } else {
         g_debug("bind() passed");
@@ -68,7 +69,8 @@ service_generate(gint service_type,
         g_debug("Calling listen()");
         if (listen(listener, 16) < 0) {
             perror("listen()");
-            g_error("listen() failed");
+            fprintf(stderr, "FATAL ERROR: unable to list on TCP port %i socket\n", port);
+            exit(EXIT_FAILURE);
         } else {
             g_debug("listen() passed");
         }
@@ -96,7 +98,8 @@ service_generate(gint service_type,
                                    service_http_callback_connection_new,
                                    (void *) base);
     } else {
-        g_error("Unable to discern service type");
+        fprintf(stderr, "FATAL ERROR: Unable to discern service type when setting up libevent listener events\n");
+        exit(EXIT_FAILURE);
     }
     g_debug("Adding listener event");
     event_add(listener_event, NULL);

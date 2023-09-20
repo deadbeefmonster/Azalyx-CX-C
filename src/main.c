@@ -43,8 +43,10 @@ main(int argc, char **argv) {
 
     /* Init libevent */
     base = event_base_new();
-    if (!base)
-        g_error("event_base_new() failed");
+    if (!base) {
+        fprintf(stderr, "event_base_new() failed\n");
+        exit(EXIT_FAILURE);
+    }
 
     /* Init configuration */
     conf->service_enable_dns = SERVICE_STATUS_UNKNOWN;

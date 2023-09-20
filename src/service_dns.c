@@ -276,7 +276,8 @@ service_dns_callback_conn_new(evutil_socket_t listener, short event, void *arg) 
     if (request_size == -1) {
         perror("recvfrom()");
         event_base_loopbreak(base);
-        g_error("service_dns_callback_connection_new: recvfrom() failed");
+        fprintf(stderr, "service_dns_callback_connection_new: recvfrom() failed\n");
+        exit(EXIT_FAILURE);
     }
     /* Parse the request from a stream of bits to a usable data structure */
     service_dns_request_parse(buffer, request, request_size);

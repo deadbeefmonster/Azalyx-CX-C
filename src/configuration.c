@@ -12,7 +12,6 @@ load_configuration_file(struct settings *conf) {
     if (fd == -1) {
         g_printf("ERROR: Unable to open '%s' for reading\n", conf->configuration_file);
         exit(EXIT_FAILURE);
-        //g_error("Unable to open '%s' for reading", conf->configuration_file, NULL);
     }
     close(fd);
 
@@ -23,9 +22,10 @@ load_configuration_file(struct settings *conf) {
                                    conf->configuration_file,
                                    flags,
                                    &error)) {
-        g_error("Unable to load configuration from configuration file '%s': %s",
+        fprintf(stderr, "Unable to load configuration from configuration file '%s': %s\n",
                 conf->configuration_file,
                 error->message);
+        exit(EXIT_FAILURE);
     }
     service_enable_dns =
             g_key_file_get_boolean(keyfile, "service", "enable_dns", NULL);
