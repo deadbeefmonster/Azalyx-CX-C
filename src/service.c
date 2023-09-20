@@ -28,7 +28,7 @@ service_generate(gint service_type,
     } else if (service_proto == SERVICE_PROTO_UDP) {
         listener = socket(AF_INET, SOCK_DGRAM, 0);
     } else {
-        fprintf(stderr, "Unable to discern service proto '%i'\n", service_proto);
+        fprintf(stderr, "FATAL ERROR: Unable to discern service proto '%i'\n", service_proto);
         exit(EXIT_FAILURE);
     }
     evutil_make_socket_nonblocking(listener);

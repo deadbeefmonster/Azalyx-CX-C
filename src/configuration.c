@@ -22,7 +22,7 @@ load_configuration_file(struct settings *conf) {
                                    conf->configuration_file,
                                    flags,
                                    &error)) {
-        fprintf(stderr, "Unable to load configuration from configuration file '%s': %s\n",
+        fprintf(stderr, "FATAL ERROR: Unable to load configuration from configuration file '%s': %s\n",
                 conf->configuration_file,
                 error->message);
         exit(EXIT_FAILURE);

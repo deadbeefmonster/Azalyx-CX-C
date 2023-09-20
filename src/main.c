@@ -44,7 +44,7 @@ main(int argc, char **argv) {
     /* Init libevent */
     base = event_base_new();
     if (!base) {
-        fprintf(stderr, "event_base_new() failed\n");
+        fprintf(stderr, "FATAL ERROR: event_base_new() failed\n");
         exit(EXIT_FAILURE);
     }
 
