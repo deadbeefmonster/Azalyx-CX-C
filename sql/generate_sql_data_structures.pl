@@ -42,7 +42,7 @@ while(<$fp>) {
 	my $datum = $data_conversion_map{$data_type} . $field_name;
 	if ($other_stuff =~ /\s+references\s+([a-z0-9]+)\s+\(([a-z0-9_]+)\).*/) {
 	    my $data_comments_key = $table_name . "__" . $datum;
-	    $data_comments{$data_comments_key} = "/* References database_" . $1 . "." . $2 . " */";
+	    $data_comments{$data_comments_key} = "/* References database_data_" . $1 . "." . $2 . " */";
 	    #print "-- Added data comments\n";
 	}
 	push @{$data_structures{$table_name}}, $datum;

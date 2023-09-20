@@ -125,6 +125,8 @@ main(int argc, char **argv) {
 
     /* Cleanup */
     /* XXX - Close all sockets */
+    event_base_loopbreak(base);
+
     if (conf)
         g_slice_free(struct settings, conf);
     if (ServiceDatas)
