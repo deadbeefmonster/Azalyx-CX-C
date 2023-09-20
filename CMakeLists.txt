@@ -8,8 +8,9 @@ pkg_check_modules(GLIB REQUIRED IMPORTED_TARGET glib-2.0)
 pkg_check_modules(LIBEVENT REQUIRED IMPORTED_TARGET libevent)
 
 find_package(OpenSSL REQUIRED)
+find_package(SQLite3 REQUIRED)
 
-include_directories(${LIBEVENT_INCLUDE_DIRS} ${GLIB_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR})
+include_directories(${LIBEVENT_INCLUDE_DIRS} ${GLIB_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR} ${SQLite3_INCLUDE_DIRS})
 
 add_executable(${PROJECT_NAME}
         src/main.c
@@ -23,4 +24,4 @@ add_executable(${PROJECT_NAME}
         src/crypto_rsa.c src/crypto_rsa.h
         src/database_sqlite.c src/database_sqlite.h
         )
-target_link_libraries(${PROJECT_NAME} PkgConfig::GLIB PkgConfig::LIBEVENT OpenSSL::SSL OpenSSL::Crypto)
+target_link_libraries(${PROJECT_NAME} PkgConfig::GLIB PkgConfig::LIBEVENT OpenSSL::SSL OpenSSL::Crypto ${SQLite3_LIBRARIES})
