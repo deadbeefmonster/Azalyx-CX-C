@@ -52,12 +52,12 @@ service_generate(gint service_type,
         if (service_proto == SERVICE_PROTO_TCP) {
             service_proto_str = g_string_new("TCP");
         }
-        else if (service_type == SERVICE_PROTO_UDP) {
+        else if (service_proto == SERVICE_PROTO_UDP) {
             service_proto_str = g_string_new("UDP");
         } else {
             service_proto_str = g_string_new("UNKNOWN");
         }
-        fprintf(stderr, "bind() filed for proto %s service %s on port %i\n", service_proto_str->str, service_type_str->str, port);
+        fprintf(stderr, "bind() failed for proto %s service %s on port %i\n", service_proto_str->str, service_type_str->str, port);
         exit(EXIT_FAILURE);
     } else {
         g_debug("bind() passed");
