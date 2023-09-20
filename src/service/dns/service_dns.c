@@ -1,7 +1,7 @@
 /* https://www.ietf.org/rfc/rfc1035.txt */
 
 
-#include "service_dns.h"
+#include "service/dns/service_dns.h"
 
 void
 service_dns_request_debug(struct dns_request *request) {

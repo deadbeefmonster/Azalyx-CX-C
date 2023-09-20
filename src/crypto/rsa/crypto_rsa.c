@@ -1,4 +1,4 @@
-#include "crypto_rsa.h"
+#include "crypto/rsa/crypto_rsa.h"
 
 /* Reference: https://doc.ecoscentric.com/ref/openssl-crypto-evp-pkey-keygen.html */
 void rsa_new_key(EVP_PKEY *pkey, int bits) {

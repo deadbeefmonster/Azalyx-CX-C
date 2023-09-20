@@ -7,7 +7,7 @@
  */
 
 #include "cli_arguments.h"
-#include "configuration.h"
+#include "configuration/configuration.h"
 
 void
 cli_arguments_parse(gchar **args, struct settings *conf) {

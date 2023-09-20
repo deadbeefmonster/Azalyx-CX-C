@@ -1,4 +1,4 @@
-#include "configuration.h"
+#include "configuration/configuration.h"
 
 void
 load_configuration_file(struct settings *conf) {

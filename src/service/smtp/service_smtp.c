@@ -1,23 +1,22 @@
-
-#include "service_http.h"
+#include "service/smtp/service_smtp.h"
 
 void
-service_http_callback_error(struct bufferevent *bev, short error, void *ctx) {
+service_smtp_callback_error(struct bufferevent *bev, short error, void *ctx) {
     if (error & BEV_EVENT_EOF) {
         /* connection has been closed, do any clean up here */
-        g_debug("service_http_callback_error: connection has been closed");
+        g_debug("service_smtp_callback_error: connection has been closed");
     } else if (error & BEV_EVENT_ERROR) {
         /* check errno to see what error occurred */
-        g_debug("service_http_callback_error: some error: %s", strerror(error));
+        g_debug("service_smtp_callback_error: some error: %s", strerror(error));
     } else if (error & BEV_EVENT_TIMEOUT) {
         /* must be a timeout event handle, handle it */
-        g_debug("service_http_callback_error: timeout");
+        g_debug("service_smtp_callback_error: timeout");
     }
     bufferevent_free(bev);
 }
 
 void
-service_http_callback_read(struct bufferevent *bev, void *ctx) {
+service_smtp_callback_read(struct bufferevent *bev, void *ctx) {
     struct evbuffer *input, *output;
     char *line;
     size_t n;
@@ -26,7 +25,7 @@ service_http_callback_read(struct bufferevent *bev, void *ctx) {
     output = bufferevent_get_output(bev);
 
     while ((line = evbuffer_readln(input, &n, EVBUFFER_EOL_LF))) {
-        g_debug("service_http_callback_read; line=%s", line);
+        g_debug("service_smtp_callback_read; line=%s", line);
         evbuffer_add(output, line, n);
         evbuffer_add(output, "\n", 1);
         free(line);
@@ -36,7 +35,7 @@ service_http_callback_read(struct bufferevent *bev, void *ctx) {
         char buf[1024];
         while (evbuffer_get_length(input)) {
             int n2 = evbuffer_remove(input, buf, sizeof(buf));
-            g_debug("service_http_callback_read; buf=%s", buf);
+            g_debug("service_smtp_callback_read; buf=%s", buf);
 
             evbuffer_add(output, buf, (size_t) n2);
         }
@@ -45,7 +44,7 @@ service_http_callback_read(struct bufferevent *bev, void *ctx) {
 }
 
 void
-service_http_callback_connection_new(evutil_socket_t listener,
+service_smtp_callback_connection_new(evutil_socket_t listener,
                                      short event,
                                      void *arg) {
     struct event_base *base = arg;
@@ -57,15 +56,15 @@ service_http_callback_connection_new(evutil_socket_t listener,
     } else if (fd > FD_SETSIZE) {
         close(fd);
     } else {
-        g_debug("service_http_callback_connection_new called");
+        g_debug("service_smtp_callback_connection_new called");
 
         struct bufferevent *bev;
         evutil_make_socket_nonblocking(fd);
         bev = bufferevent_socket_new(base, fd, BEV_OPT_CLOSE_ON_FREE);
         bufferevent_setcb(bev,
-                          service_http_callback_read,
+                          service_smtp_callback_read,
                           NULL,
-                          service_http_callback_error,
+                          service_smtp_callback_error,
                           NULL);
         bufferevent_setwatermark(bev, EV_READ, 0, MAX_LINE);
         bufferevent_enable(bev, EV_READ | EV_WRITE);

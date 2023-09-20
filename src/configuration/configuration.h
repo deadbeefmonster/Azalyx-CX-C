@@ -13,7 +13,7 @@
 #include <glib/gstdio.h>
 #include <sys/file.h>
 
-#include "service.h"
+#include "service/service.h"
 
 struct settings {
     gchar *configuration_file;

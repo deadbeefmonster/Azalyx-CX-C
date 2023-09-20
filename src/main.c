@@ -5,11 +5,11 @@
 #include <event2/bufferevent.h>
 #include <stdlib.h>
 
-#include "cli_arguments.h"
-#include "configuration.h"
-#include "crypto_aes.h"
-#include "database_sqlite.h"
-#include "service.h"
+#include "cli/cli_arguments.h"
+#include "configuration/configuration.h"
+#include "crypto/aes/crypto_aes.h"
+#include "database/database_sqlite.h"
+#include "service/service.h"
 
 
 #define AZALYXCX_VERSION "0.1.0"

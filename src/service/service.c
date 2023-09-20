@@ -1,4 +1,4 @@
-#include "service.h"
+#include "service/service.h"
 
 struct service_data *
 service_generate(gint service_type,

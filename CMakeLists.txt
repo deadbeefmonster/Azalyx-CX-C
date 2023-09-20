@@ -11,17 +11,38 @@ find_package(OpenSSL REQUIRED)
 find_package(SQLite3 REQUIRED)
 
 include_directories(${LIBEVENT_INCLUDE_DIRS} ${GLIB_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR} ${SQLite3_INCLUDE_DIRS})
-
+include_directories(
+        src
+        src/database
+        src/crypto
+        src/crypto/aes
+        src/crypto/rsa
+        src/configuration
+        src/cli
+        src/service
+        src/service/http
+        src/service/smtp
+        src/service/dns
+)
 add_executable(${PROJECT_NAME}
         src/main.c
-        src/cli_arguments.c src/cli_arguments.h
-        src/configuration.c src/configuration.h
-        src/service.c src/service.h
-        src/service_smtp.c src/service_smtp.h
-        src/service_http.c src/service_http.h
-        src/service_dns.c src/service_dns.h
-        src/crypto_aes.c src/crypto_aes.h
-        src/crypto_rsa.c src/crypto_rsa.h
-        src/database_sqlite.c src/database_sqlite.h
+        src/cli/cli_arguments.c
+        src/cli/cli_arguments.h
+        src/configuration/configuration.c
+        src/configuration/configuration.h
+        src/crypto/aes/crypto_aes.c
+        src/crypto/aes/crypto_aes.h
+        src/crypto/rsa/crypto_rsa.c
+        src/crypto/rsa/crypto_rsa.h
+        src/database/database_sqlite.c
+        src/database/database_sqlite.h
+        src/service/service.c
+        src/service/service.h
+        src/service/dns/service_dns.c
+        src/service/dns/service_dns.h
+        src/service/http/service_http.c
+        src/service/http/service_http.h
+        src/service/smtp/service_smtp.c
+        src/service/smtp/service_smtp.h
         )
 target_link_libraries(${PROJECT_NAME} PkgConfig::GLIB PkgConfig::LIBEVENT OpenSSL::SSL OpenSSL::Crypto ${SQLite3_LIBRARIES})

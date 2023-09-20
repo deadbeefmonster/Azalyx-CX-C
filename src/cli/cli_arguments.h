@@ -8,7 +8,7 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 
-#include "configuration.h"
+#include "configuration/configuration.h"
 
 void cli_arguments_parse(gchar**, struct settings*);
 

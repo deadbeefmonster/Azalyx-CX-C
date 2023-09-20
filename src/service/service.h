@@ -9,9 +9,9 @@
 #include <glib/gi18n.h>
 #include <event2/event.h>
 
-#include "service_dns.h"
-#include "service_http.h"
-#include "service_smtp.h"
+#include "service/dns/service_dns.h"
+#include "service/http/service_http.h"
+#include "service/smtp/service_smtp.h"
 
 #define SERVICE_STATUS_UNKNOWN 0
 #define SERVICE_STATUS_DISABLED 1
