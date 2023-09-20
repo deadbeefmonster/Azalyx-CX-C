@@ -36,7 +36,29 @@ service_generate(gint service_type,
     /* Bind the socket */
     g_debug("Calling bind()");
     if (bind(listener, (struct sockaddr *) &sin, sizeof(sin)) < 0) {
-        g_error("bind() failed");
+        /* XXX - Extract this out to a specific error handler that is more dynamic */
+        GString *service_type_str;
+        GString *service_proto_str;
+        if (service_type == SERVICE_TYPE_DNS) {
+            service_type_str = g_string_new("DNS");
+        } else if (service_type == SERVICE_TYPE_HTTP) {
+            service_type_str = g_string_new("HTTP");
+        } else if (service_type == SERVICE_TYPE_SMTP) {
+            service_type_str = g_string_new("SMTP");
+        }
+        else {
+            service_type_str = g_string_new("UNKNOWN");
+        }
+        if (service_proto == SERVICE_PROTO_TCP) {
+            service_proto_str = g_string_new("TCP");
+        }
+        else if (service_type == SERVICE_PROTO_UDP) {
+            service_proto_str = g_string_new("UDP");
+        } else {
+            service_proto_str = g_string_new("UNKNOWN");
+        }
+        fprintf(stderr, "bind() filed for proto %s service %s on port %i\n", service_proto_str->str, service_type_str->str, port);
+        exit(EXIT_FAILURE);
     } else {
         g_debug("bind() passed");
     }
