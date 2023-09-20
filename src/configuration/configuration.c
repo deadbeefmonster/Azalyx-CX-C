@@ -10,7 +10,7 @@ load_configuration_file(struct settings *conf) {
     /* Test if file is available for read-only access */
     int fd = g_open(conf->configuration_file, O_WRONLY | O_NOFOLLOW | O_CLOEXEC);
     if (fd == -1) {
-        g_printf("ERROR: Unable to open '%s' for reading\n", conf->configuration_file);
+        g_printf("FATAL ERROR: Unable to open '%s' for reading\n", conf->configuration_file);
         exit(EXIT_FAILURE);
     }
     close(fd);

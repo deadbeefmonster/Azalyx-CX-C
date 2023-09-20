@@ -52,6 +52,7 @@ main(int argc, char **argv) {
     conf->service_enable_dns = SERVICE_STATUS_UNKNOWN;
     conf->service_enable_http = SERVICE_STATUS_UNKNOWN;
     conf->service_enable_smtp = SERVICE_STATUS_UNKNOWN;
+    conf->configuration_file = NULL;
 
     /* Read command line arguments */
     cli_args = g_strdupv(argv);
