@@ -50,15 +50,18 @@ main(int argc, char **argv) {
 
     /* Init configuration */
     conf->service_enable_dns = SERVICE_STATUS_UNKNOWN;
+    conf->service_dns_port = 0;
     conf->service_enable_http = SERVICE_STATUS_UNKNOWN;
+    conf->service_http_port = 0;
     conf->service_enable_smtp = SERVICE_STATUS_UNKNOWN;
+    conf->service_smtp_port = 0;
     conf->configuration_file = NULL;
+
 
     /* Read command line arguments */
     cli_args = g_strdupv(argv);
     cli_arguments_parse(cli_args, conf);
     g_strfreev(cli_args);
-
 
     /* Service provisioning, setup, and registering. - Create sockets,
      * register callbacks */
@@ -66,9 +69,15 @@ main(int argc, char **argv) {
     if (conf->service_enable_dns == SERVICE_STATUS_ENABLED) {
         /* TODO: plugin hook */
 
+        /* Ensure sane port defaults if none specified */
+        if (conf->service_dns_port == 0) {
+            g_debug("Ensuring sane DNS port 0 -> 53");
+            conf->service_dns_port = 53;
+        }
+
         struct service_data *service_data_dns;
         service_data_dns =
-                service_generate(SERVICE_TYPE_DNS, SERVICE_PROTO_UDP, 53, base);
+                service_generate(SERVICE_TYPE_DNS, SERVICE_PROTO_UDP, conf->service_dns_port, base);
         g_array_append_val(ServiceDatas, service_data_dns);
         g_info("Service DNS Loaded");
 
@@ -77,9 +86,15 @@ main(int argc, char **argv) {
     if (conf->service_enable_http == SERVICE_STATUS_ENABLED) {
         /* TODO: plugin hook */
 
+        /* Ensure sane port defaults if none specified */
+        if (conf->service_http_port == 0) {
+            g_debug("Ensuring sane HTTP port 0 -> 80");
+            conf->service_http_port = 80;
+        }
+
         struct service_data *service_data_http;
         service_data_http =
-                service_generate(SERVICE_TYPE_HTTP, SERVICE_PROTO_TCP, 80, base);
+                service_generate(SERVICE_TYPE_HTTP, SERVICE_PROTO_TCP, conf->service_http_port, base);
         g_array_append_val(ServiceDatas, service_data_http);
         g_info("Service HTTP Loaded");
 
@@ -88,9 +103,15 @@ main(int argc, char **argv) {
     if (conf->service_enable_smtp == SERVICE_STATUS_ENABLED) {
         /* TODO: plugin hook */
 
+        /* Ensure sane port defaults if none specified */
+        if (conf->service_smtp_port == 0) {
+            g_debug("Ensuring sane DNS port 0 -> 25");
+            conf->service_dns_port = 25;
+        }
+
         struct service_data *service_data_smtp;
         service_data_smtp =
-                service_generate(SERVICE_TYPE_SMTP, SERVICE_PROTO_TCP, 25, base);
+                service_generate(SERVICE_TYPE_SMTP, SERVICE_PROTO_TCP, conf->service_smtp_port, base);
         g_array_append_val(ServiceDatas, service_data_smtp);
         g_info("Service SMTP Loaded");
 

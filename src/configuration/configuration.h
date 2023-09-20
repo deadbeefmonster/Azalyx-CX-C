@@ -20,6 +20,9 @@ struct settings {
     gint service_enable_dns;
     gint service_enable_http;
     gint service_enable_smtp;
+    guint16 service_dns_port;
+    guint16 service_http_port;
+    guint16 service_smtp_port;
 };
 
 void load_configuration_file(struct settings *);
