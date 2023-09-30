@@ -1,9 +1,7 @@
-//
-// Created by Chris Humphries on 7/11/22.
-//
 
-#ifndef AZALYXCX_SERVICE_H
-#define AZALYXCX_SERVICE_H
+
+#ifndef AZALYXCX_SERVICE_SERVICE_H
+#define AZALYXCX_SERVICE_SERVICE_H
 
 #include <glib.h>
 #include <glib/gi18n.h>
@@ -36,4 +34,4 @@ struct service_data {
 
 struct service_data *service_generate(gint, gint, gint, struct event_base *);
 
-#endif //AZALYXCX_SERVICE_H
+#endif //AZALYXCX_SERVICE_SERVICE_H

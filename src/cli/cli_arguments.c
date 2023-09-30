@@ -6,7 +6,7 @@
  *
  */
 
-#include "cli_arguments.h"
+#include "cli/cli_arguments.h"
 #include "configuration/configuration.h"
 
 void

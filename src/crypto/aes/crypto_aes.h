@@ -5,8 +5,8 @@
  * https://github.com/saju/misc/blob/master/misc/openssl_aes.c (another example of using EVP for AES)
  */
 
-#ifndef AZALYXCX_CRYPTO_AES_H
-#define AZALYXCX_CRYPTO_AES_H
+#ifndef AZALYXCX_CRYPTO_AES_CRYPTO_AES_H
+#define AZALYXCX_CRYPTO_AES_CRYPTO_AES_H
 
 #include <glib.h>
 #include <openssl/evp.h>
@@ -24,4 +24,4 @@ int aes_decrypt(unsigned char *ciphertext, int ciphertext_len, struct aes_key *a
 
 void aes_generate_new_key_iv(struct aes_key *aes_key);
 
-#endif //AZALYXCX_CRYPTO_AES_H
+#endif //AZALYXCX_CRYPTO_AES_CRYPTO_AES_H

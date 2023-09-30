@@ -1,9 +1,7 @@
-//
-// Created by Chris Humphries on 7/11/22.
-//
 
-#ifndef AZALYXCX_SERVICE_HTTP_H
-#define AZALYXCX_SERVICE_HTTP_H
+
+#ifndef AZALYXCX_SERVICE_SERVICE_HTTP_H
+#define AZALYXCX_SERVICE_SERVICE_HTTP_H
 
 #include <glib.h>
 #include <glib/gi18n.h>
@@ -24,4 +22,4 @@ void service_http_callback_error(struct bufferevent *bev,
 
 void service_http_callback_read(struct bufferevent *bev, void *ctx);
 
-#endif //AZALYXCX_SERVICE_HTTP_H
+#endif //AZALYXCX_SERVICE_SERVICE_HTTP_H

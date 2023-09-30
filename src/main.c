@@ -8,7 +8,7 @@
 #include "cli/cli_arguments.h"
 #include "configuration/configuration.h"
 #include "crypto/aes/crypto_aes.h"
-#include "database/database_sqlite.h"
+#include "database/database.h"
 #include "service/service.h"
 
 

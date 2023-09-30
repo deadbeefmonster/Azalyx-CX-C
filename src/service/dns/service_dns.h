@@ -1,6 +1,6 @@
 
-#ifndef AZALYXCX_SERVICE_DNS_H
-#define AZALYXCX_SERVICE_DNS_H
+#ifndef AZALYXCX_SERVICE_SERVICE_DNS_H
+#define AZALYXCX_SERVICE_SERVICE_DNS_H
 
 #include <glib.h>
 #include <glib/gi18n.h>
@@ -76,4 +76,4 @@ void service_dns_request_parse(guchar *buffer, struct dns_request *request, glon
 
 void service_dns_request_process(struct dns_request *request);
 
-#endif //AZALYXCX_SERVICE_DNS_H
+#endif //AZALYXCX_SERVICE_SERVICE_DNS_H
