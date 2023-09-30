@@ -3,3 +3,5 @@ old
 cmake-build-debug
 cmake-build-release
 configuration.ini
+cmake-build-minsizerel
+cmake-build-relwithdebinfo
