@@ -1,3 +1,4 @@
 .idea
 cmake-build-debug
 configuration.ini
+cmake-build-release
