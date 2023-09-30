@@ -93,10 +93,7 @@ main(int argc, char **argv) {
             return (EXIT_FAILURE);
         }
 
-        // Connect the request handler
-        g_signal_connect(http_service, "incoming", G_CALLBACK(http_handle_request), NULL);
-
-        // Start the service
+        g_signal_connect(http_service, "run", G_CALLBACK(http_handle_request), NULL);
         g_socket_service_start(http_service);
 
         service_data_http->service = http_service;
