@@ -16,18 +16,17 @@
 
 #define SERVICE_PROTO_TCP 1
 #define SERVICE_PROTO_UDP 2
-/*#define SERVICE_PROTO_UNIX  4*/
+#define SERVICE_PROTO_UNIX 3
 
 #define SERVICE_TYPE_DNS 1
 #define SERVICE_TYPE_SMTP 2
-#define SERVICE_TYPE_HTTP 4
-/*#define SERVICE_TYPE_UNIX    8*/
+#define SERVICE_TYPE_HTTP 3
+#define SERVICE_TYPE_UNIX 4
 
 struct service_data {
-    gint service_proto;
-    gint service_type;
-    gint port;
-    GSocketAddress *address;
+    guint8 service_proto;
+    guint8 service_type;
+    guint16 port;
     GSocketService *service;
 };
 

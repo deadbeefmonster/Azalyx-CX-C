@@ -19,7 +19,6 @@ gboolean NO_COLOR = FALSE;
 
 int
 main(int argc, char **argv) {
-
     /* Include support for NO_COLOR ~> https://no-color.org/ */
     const gchar *no_color_env = g_getenv("NO_COLOR");
     if (no_color_env != NULL && no_color_env[0] != '\0') {
@@ -82,8 +81,30 @@ main(int argc, char **argv) {
             conf->service_http_port = 80;
         }
 
-        //struct service_data *service_data_http;
-        //g_array_append_val(ServiceDatas, service_data_http);
+        struct service_data *service_data_http = g_slice_new(struct service_data);
+
+        GError *http_error = NULL;
+        GSocketService *http_service = g_threaded_socket_service_new(100);
+        g_socket_listener_add_inet_port((GSocketListener *)http_service, conf->service_http_port, NULL, &http_error);
+
+        if (http_error != NULL) {
+            fprintf(stderr, "FATAL ERROR: Could not create http socket listener: %s\n", http_error->message);
+            g_error_free (http_error);
+            return (EXIT_FAILURE);
+        }
+
+        // Connect the request handler
+        g_signal_connect(http_service, "incoming", G_CALLBACK(http_handle_request), NULL);
+
+        // Start the service
+        g_socket_service_start(http_service);
+
+        service_data_http->service = http_service;
+        service_data_http->port = conf->service_http_port;
+        service_data_http->service_proto = SERVICE_PROTO_TCP;
+        service_data_http->service_type = SERVICE_TYPE_HTTP;
+
+        g_array_append_val(ServiceDatas, service_data_http);
         g_info("Service HTTP Loaded");
 
         /* TODO: plugin hook */
@@ -106,14 +127,25 @@ main(int argc, char **argv) {
     /* TODO: plugin_hook */
 
 
+    GMainLoop *loop = g_main_loop_new(NULL, FALSE);
+    g_main_loop_run(loop);
+
+
+
 
     /* Cleanup */
-
-
     if (conf)
         g_slice_free(struct settings, conf);
-    if (ServiceDatas)
+
+    if (ServiceDatas) {
+        int i;
+        for (i = 0; i  < ServiceDatas->len; i++) {
+            struct service_data *tmp = g_array_index(ServiceDatas, struct service_data *, i);
+            g_socket_service_stop(tmp->service);
+        }
         g_array_free(ServiceDatas, TRUE);
+
+    }
 
     return (EXIT_SUCCESS);
 }

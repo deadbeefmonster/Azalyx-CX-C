@@ -5,6 +5,8 @@ set(CMAKE_C_STANDARD 99)
 
 include(FindPkgConfig)
 pkg_check_modules(GLIB REQUIRED IMPORTED_TARGET glib-2.0)
+pkg_check_modules(GIO REQUIRED IMPORTED_TARGET gio-2.0)
+
 find_package(OpenSSL REQUIRED)
 find_package(SQLite3 REQUIRED)
 
@@ -61,7 +63,7 @@ add_executable(${PROJECT_NAME}
         src/database/sqlite3/tables/request_response.h
 )
 target_link_libraries(${PROJECT_NAME}
-    PkgConfig::GLIB
+    PkgConfig::GLIB PkgConfig::GIO
     OpenSSL::SSL OpenSSL::Crypto
     ${SQLite3_LIBRARIES}
 )
