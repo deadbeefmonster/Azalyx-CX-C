@@ -5,16 +5,10 @@ set(CMAKE_C_STANDARD 99)
 
 include(FindPkgConfig)
 pkg_check_modules(GLIB REQUIRED IMPORTED_TARGET glib-2.0)
-pkg_check_modules(LIBEVENT REQUIRED IMPORTED_TARGET libevent)
-
-##
-# On macOS via brew, a cmake define is required: -DCMAKE_PREFIX_PATH=/usr/local/opt/icu4c
-pkg_check_modules(LIBSOUP REQUIRED IMPORTED_TARGET libsoup-3.0)
-
 find_package(OpenSSL REQUIRED)
 find_package(SQLite3 REQUIRED)
 
-include_directories(${LIBEVENT_INCLUDE_DIRS} ${GLIB_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR} ${SQLite3_INCLUDE_DIRS})
+include_directories(${GLIB_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR} ${SQLite3_INCLUDE_DIRS})
 include_directories(
         src
         src/database
@@ -68,8 +62,6 @@ add_executable(${PROJECT_NAME}
 )
 target_link_libraries(${PROJECT_NAME}
     PkgConfig::GLIB
-    PkgConfig::LIBEVENT
     OpenSSL::SSL OpenSSL::Crypto
     ${SQLite3_LIBRARIES}
-    PkgConfig::LIBSOUP
 )

@@ -1,8 +1,7 @@
 #define G_LOG_USE_STRUCTURED 1
 
 #include <glib.h>
-#include <event2/event.h>
-#include <event2/bufferevent.h>
+#include <gio/gio.h>
 #include <stdlib.h>
 
 #include "cli/cli_arguments.h"
@@ -32,7 +31,6 @@ main(int argc, char **argv) {
 
     gchar **cli_args;                                        /* CLI arguments */
     struct settings *conf = g_slice_new(struct settings);    /* All settings */
-    struct event_base *base;                                 /* LibEvent */
     GArray *ServiceDatas = g_array_new(FALSE, FALSE, sizeof(struct service_data *));    /* Services */
 
     /* Init glib */
@@ -41,12 +39,6 @@ main(int argc, char **argv) {
                       g_log_default_handler,
                       NULL);
 
-    /* Init libevent */
-    base = event_base_new();
-    if (!base) {
-        fprintf(stderr, "FATAL ERROR: event_base_new() failed\n");
-        exit(EXIT_FAILURE);
-    }
 
     /* Init configuration */
     conf->service_enable_dns = SERVICE_STATUS_UNKNOWN;
@@ -75,10 +67,8 @@ main(int argc, char **argv) {
             conf->service_dns_port = 53;
         }
 
-        struct service_data *service_data_dns;
-        service_data_dns =
-                service_generate(SERVICE_TYPE_DNS, SERVICE_PROTO_UDP, conf->service_dns_port, base);
-        g_array_append_val(ServiceDatas, service_data_dns);
+        //struct service_data *service_data_dns;
+        //g_array_append_val(ServiceDatas, service_data_dns);
         g_info("Service DNS Loaded");
 
         /* TODO: plugin hook */
@@ -92,10 +82,8 @@ main(int argc, char **argv) {
             conf->service_http_port = 80;
         }
 
-        struct service_data *service_data_http;
-        service_data_http =
-                service_generate(SERVICE_TYPE_HTTP, SERVICE_PROTO_TCP, conf->service_http_port, base);
-        g_array_append_val(ServiceDatas, service_data_http);
+        //struct service_data *service_data_http;
+        //g_array_append_val(ServiceDatas, service_data_http);
         g_info("Service HTTP Loaded");
 
         /* TODO: plugin hook */
@@ -109,23 +97,18 @@ main(int argc, char **argv) {
             conf->service_dns_port = 25;
         }
 
-        struct service_data *service_data_smtp;
-        service_data_smtp =
-                service_generate(SERVICE_TYPE_SMTP, SERVICE_PROTO_TCP, conf->service_smtp_port, base);
-        g_array_append_val(ServiceDatas, service_data_smtp);
+        //struct service_data *service_data_smtp;
+        //g_array_append_val(ServiceDatas, service_data_smtp);
         g_info("Service SMTP Loaded");
 
         /* TODO: plugin hook */
     }
     /* TODO: plugin_hook */
 
-    /* TODO: plugin hook */
-    event_base_dispatch(base);
-    /* TODO: plugin hook */
+
 
     /* Cleanup */
-    /* XXX - Close all sockets */
-    event_base_loopbreak(base);
+
 
     if (conf)
         g_slice_free(struct settings, conf);

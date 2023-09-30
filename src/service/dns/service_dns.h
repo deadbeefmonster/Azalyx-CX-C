@@ -4,9 +4,7 @@
 
 #include <glib.h>
 #include <glib/gi18n.h>
-#include <event2/event.h>
-#include <event2/buffer.h>
-#include <event2/bufferevent.h>
+#include <gio/gio.h>
 
 struct dns_header {
     guint id;
@@ -68,12 +66,6 @@ static const guint header_mask_z      = 0x0070; /* 0000 0000 0111 0000 */
 static const guint header_mask_rcode  = 0x000F; /* 0000 0000 0000 1111 */
 
 
-void service_dns_callback_conn_new(evutil_socket_t, short, void *);
 
-void service_dns_request_debug(struct dns_request *request);
-
-void service_dns_request_parse(guchar *buffer, struct dns_request *request, glong request_size);
-
-void service_dns_request_process(struct dns_request *request);
 
 #endif //AZALYXCX_SERVICE_SERVICE_DNS_H

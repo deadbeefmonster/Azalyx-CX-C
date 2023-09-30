@@ -5,7 +5,6 @@
 
 #include <glib.h>
 #include <glib/gi18n.h>
-#include <event2/event.h>
 
 #include "service/dns/service_dns.h"
 #include "service/http/service_http.h"
@@ -28,10 +27,10 @@ struct service_data {
     gint service_proto;
     gint service_type;
     gint port;
-    evutil_socket_t socket;
-    struct sockaddr_in sin;
+    GSocketAddress *address;
+    GSocketService *service;
 };
 
-struct service_data *service_generate(gint, gint, gint, struct event_base *);
+
 
 #endif //AZALYXCX_SERVICE_SERVICE_H
