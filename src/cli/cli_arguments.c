@@ -39,8 +39,8 @@ cli_arguments_parse(gchar **args, struct settings *conf) {
                     {"service-smtp-port", 0, 0, G_OPTION_ARG_INT, &cli_smtp_port, "SMTP Service Port (UDP)"},
                     {"configuration-file",  'c', 0, G_OPTION_ARG_FILENAME,
                             &cli_argument_configuration_file,  "Configuration File",  NULL},
-                    {"http-certfile", 0, 0, G_OPTION_ARG_FILENAME, &cli_http_certfile, "HTTPS certificate cert file path", NULL},
-                    {"http-keyfile", 0, 0, G_OPTION_ARG_FILENAME, &cli_http_keyfile, "HTTPS certificate key file path", NULL},
+                    {"http-certfile", 0, 0, G_OPTION_ARG_FILENAME, &cli_http_certfile, "HTTP certificate cert file path", NULL},
+                    {"http-keyfile", 0, 0, G_OPTION_ARG_FILENAME, &cli_http_keyfile, "HTTP certificate key file path", NULL},
                     {NULL}
             };
 
@@ -51,6 +51,7 @@ cli_arguments_parse(gchar **args, struct settings *conf) {
         g_printerr("FATAL ERROR: command line argument parsing failed: %s\n", error->message);
         exit(EXIT_FAILURE);
     }
+
     // Parse the configuration file
     if (cli_argument_configuration_file) {
         g_debug("Setting conf->configuration_file from '%s' to '%s'",
@@ -94,4 +95,5 @@ cli_arguments_parse(gchar **args, struct settings *conf) {
         conf->http_certfile = cli_http_certfile;
     }
 
+    g_option_context_free(context);
 }

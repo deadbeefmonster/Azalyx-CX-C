@@ -80,8 +80,14 @@ main(int argc, char **argv) {
 
         /* Ensure sane port defaults if none specified */
         if (conf->service_http_port == 0) {
-            g_debug("Ensuring sane HTTP port 0 -> 80");
-            conf->service_http_port = 80;
+            if (conf->http_keyfile && conf->http_certfile) {
+                g_debug("Ensuring sane HTTP port 0 -> 443 (HTTPS files are configured)");
+                conf->service_http_port = 443;
+            }
+            else {
+                g_debug("Ensuring sane HTTP port 0 -> 80");
+                conf->service_http_port = 80;
+            }
         }
 
         struct service_data *service_data_http = g_slice_new(struct service_data);
