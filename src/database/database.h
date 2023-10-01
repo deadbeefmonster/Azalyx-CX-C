@@ -120,4 +120,4 @@ struct database_data_session {
 
 
 
-#endif //AZALYXCX_DATABASE_DATABASE_H
+#endif /* AZALYXCX_DATABASE_DATABASE_H */

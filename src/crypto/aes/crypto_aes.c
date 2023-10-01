@@ -1,13 +1,13 @@
 #include "crypto/aes/crypto_aes.h"
 
 void aes_generate_new_key_iv(struct aes_key *aes_key) {
-    // Generate AES key bytes
+    /* Generate AES key bytes */
     if (1 != RAND_bytes(aes_key->key, 32)) {
         g_printerr("FATAL ERROR: 1 != RAND_bytes(aes_key->key, 32)\n");
         exit(EXIT_FAILURE);
     }
 
-    // Generate AES iv bytes
+    /* Generate AES iv bytes */
     if (1 != RAND_bytes(aes_key->iv, 16)) {
         g_printerr("FATAL ERROR: 1 != RAND_bytes(aes_key->iv, 16)\n");
         exit(EXIT_FAILURE);

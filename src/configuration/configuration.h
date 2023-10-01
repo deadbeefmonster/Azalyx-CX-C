@@ -25,8 +25,9 @@ struct settings {
     guint16 service_smtp_port;
     gchar *http_certfile;
     gchar *http_keyfile;
+    gchar *sqlite_database_file;
 };
 
 void load_configuration_file(struct settings *);
 
-#endif //AZALYXCX_CONFIGURATION_CONFIGURATION_H
+#endif /* AZALYXCX_CONFIGURATION_CONFIGURATION_H */

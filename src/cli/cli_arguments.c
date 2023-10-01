@@ -23,6 +23,7 @@ cli_arguments_parse(gchar **args, struct settings *conf) {
     static guint16 cli_smtp_port = 0;
     static gchar *cli_http_certfile;
     static gchar *cli_http_keyfile;
+    static gchar *cli_sqlite_database_file;
 
 
 
@@ -39,8 +40,9 @@ cli_arguments_parse(gchar **args, struct settings *conf) {
                     {"service-smtp-port", 0, 0, G_OPTION_ARG_INT, &cli_smtp_port, "SMTP Service Port (UDP)"},
                     {"configuration-file",  'c', 0, G_OPTION_ARG_FILENAME,
                             &cli_argument_configuration_file,  "Configuration File",  NULL},
-                    {"http-certfile", 0, 0, G_OPTION_ARG_FILENAME, &cli_http_certfile, "HTTP certificate cert file path", NULL},
-                    {"http-keyfile", 0, 0, G_OPTION_ARG_FILENAME, &cli_http_keyfile, "HTTP certificate key file path", NULL},
+                    {"http-certfile", 0, 0, G_OPTION_ARG_FILENAME, &cli_http_certfile, "HTTP certificate cert file", NULL},
+                    {"http-keyfile", 0, 0, G_OPTION_ARG_FILENAME, &cli_http_keyfile, "HTTP certificate key file", NULL},
+                    {"sqlite-database-file", 0, 0, G_OPTION_ARG_FILENAME, &cli_sqlite_database_file, "SQLite3 database file" },
                     {NULL}
             };
 
@@ -93,6 +95,10 @@ cli_arguments_parse(gchar **args, struct settings *conf) {
     if (cli_http_certfile) {
         g_debug("HTTPS certificate cert file override: %s", cli_http_certfile);
         conf->http_certfile = cli_http_certfile;
+    }
+    if (cli_sqlite_database_file) {
+        g_debug("SQLite3 database file path override: %s", cli_sqlite_database_file);
+        conf->sqlite_database_file = cli_argument_configuration_file;
     }
 
     g_option_context_free(context);

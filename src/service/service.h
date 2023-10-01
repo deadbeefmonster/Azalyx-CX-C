@@ -27,9 +27,8 @@ struct service_data {
     guint8 service_proto;
     guint8 service_type;
     guint16 port;
-    GSocketService *service;
 };
 
 
 
-#endif //AZALYXCX_SERVICE_SERVICE_H
+#endif /* AZALYXCX_SERVICE_SERVICE_H */

@@ -10,4 +10,4 @@
 
 void cli_arguments_parse(gchar**, struct settings*);
 
-#endif //AZALYXCX_CLI_CLI_ARGUMENTS_H
+#endif /* AZALYXCX_CLI_CLI_ARGUMENTS_H */

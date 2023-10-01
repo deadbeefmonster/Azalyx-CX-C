@@ -13,3 +13,4 @@ linux_build/Makefile
 linux_build/cmake_install.cmake
 *.crt
 *.key
+**/*.backup

@@ -68,4 +68,4 @@ static const guint header_mask_rcode  = 0x000F; /* 0000 0000 0000 1111 */
 
 
 
-#endif //AZALYXCX_SERVICE_SERVICE_DNS_H
+#endif /* AZALYXCX_SERVICE_SERVICE_DNS_H */

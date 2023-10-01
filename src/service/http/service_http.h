@@ -15,4 +15,4 @@ void http_handle_request(SoupServer        *server,
                              gpointer           user_data);
 
 
-#endif //AZALYXCX_SERVICE_SERVICE_HTTP_H
+#endif /* AZALYXCX_SERVICE_SERVICE_HTTP_H */
