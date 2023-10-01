@@ -3,6 +3,7 @@
 #include <glib.h>
 #include <gio/gio.h>
 #include <stdlib.h>
+#include <libsoup/soup.h>
 
 #include "cli/cli_arguments.h"
 #include "configuration/configuration.h"
@@ -82,21 +83,25 @@ main(int argc, char **argv) {
         }
 
         struct service_data *service_data_http = g_slice_new(struct service_data);
-
+//
         GError *http_error = NULL;
-        GSocketService *http_service = g_threaded_socket_service_new(100);
-        g_socket_listener_add_inet_port((GSocketListener *)http_service, conf->service_http_port, NULL, &http_error);
+//        GSocketService *http_service = g_threaded_socket_service_new(100);
+//        g_socket_listener_add_inet_port((GSocketListener *)http_service, conf->service_http_port, NULL, &http_error);
+//
+//        if (http_error != NULL) {
+//            fprintf(stderr, "FATAL ERROR: Could not create http socket listener: %s\n", http_error->message);
+//            g_error_free (http_error);
+//            return (EXIT_FAILURE);
+//        }
+//
+//        g_signal_connect(http_service, "run", G_CALLBACK(http_handle_request), NULL);
+//        g_socket_service_start(http_service);
 
-        if (http_error != NULL) {
-            fprintf(stderr, "FATAL ERROR: Could not create http socket listener: %s\n", http_error->message);
-            g_error_free (http_error);
-            return (EXIT_FAILURE);
-        }
+        SoupServer *http_server = soup_server_new("server-header", "http-server", NULL);
+        soup_server_listen_all(http_server, conf->service_http_port, 0,&http_error);
+        soup_server_add_handler (http_server, NULL,http_handle_request, NULL, NULL);
 
-        g_signal_connect(http_service, "run", G_CALLBACK(http_handle_request), NULL);
-        g_socket_service_start(http_service);
-
-        service_data_http->service = http_service;
+        //service_data_http->service = http_service;
         service_data_http->port = conf->service_http_port;
         service_data_http->service_proto = SERVICE_PROTO_TCP;
         service_data_http->service_type = SERVICE_TYPE_HTTP;
