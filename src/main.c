@@ -89,7 +89,7 @@ main(int argc, char **argv) {
 //        g_socket_listener_add_inet_port((GSocketListener *)http_service, conf->service_http_port, NULL, &http_error);
 //
 //        if (http_error != NULL) {
-//            fprintf(stderr, "FATAL ERROR: Could not create http socket listener: %s\n", http_error->message);
+//            g_printerr("FATAL ERROR: Could not create http socket listener: %s\n", http_error->message);
 //            g_error_free (http_error);
 //            return (EXIT_FAILURE);
 //        }
@@ -97,8 +97,15 @@ main(int argc, char **argv) {
 //        g_signal_connect(http_service, "run", G_CALLBACK(http_handle_request), NULL);
 //        g_socket_service_start(http_service);
 
+        // https://gitlab.gnome.org/GNOME/libsoup/blob/master/examples/simple-httpd.c
         SoupServer *http_server = soup_server_new("server-header", "http-server", NULL);
         soup_server_listen_all(http_server, conf->service_http_port, 0,&http_error);
+        if (http_error != NULL) {
+            g_printerr("FATAL ERROR: Could not create http server: %s\n", http_error->message);
+            g_error_free (http_error);
+            return (EXIT_FAILURE);
+        }
+
         soup_server_add_handler (http_server, NULL,http_handle_request, NULL, NULL);
 
         //service_data_http->service = http_service;

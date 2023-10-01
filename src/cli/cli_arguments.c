@@ -44,7 +44,7 @@ cli_arguments_parse(gchar **args, struct settings *conf) {
     context = g_option_context_new("");
     g_option_context_add_main_entries(context, cli_argument_options, NULL);
     if (!g_option_context_parse_strv(context, &args, &error)) {
-        fprintf(stderr, "FATAL ERROR: command line argument parsing failed: %s\n", error->message);
+        g_printerr("FATAL ERROR: command line argument parsing failed: %s\n", error->message);
         exit(EXIT_FAILURE);
     }
     // Parse the configuration file

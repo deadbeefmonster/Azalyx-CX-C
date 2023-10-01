@@ -44,7 +44,7 @@ void http_handle_request(SoupServer        *server,
     if (request_body->length)
         g_debug ("http_handle_request(): %s", request_body->data);
 
-    g_debug("path = %s", path);
+    g_debug("http_handle_request(): path = %s", path);
 //    file_path = g_strdup_printf (".%s", path);
 
 //    if (soup_server_message_get_method (msg) == SOUP_METHOD_GET || soup_server_message_get_method (msg) == SOUP_METHOD_HEAD)
