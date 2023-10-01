@@ -54,7 +54,7 @@ cli_arguments_parse(gchar **args, struct settings *conf) {
         exit(EXIT_FAILURE);
     }
 
-    // Parse the configuration file
+    /* Parse the configuration file */
     if (cli_argument_configuration_file) {
         g_debug("Setting conf->configuration_file from '%s' to '%s'",
                 conf->configuration_file,

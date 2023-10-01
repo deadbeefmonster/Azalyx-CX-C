@@ -6,4 +6,4 @@
 #include "database/database.h"
 
 
-#endif //AZALYXCX_DATABASE_SQLITE3_SQLITE3_H
+#endif /* AZALYXCX_DATABASE_SQLITE3_SQLITE3_H */
