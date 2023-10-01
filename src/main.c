@@ -18,6 +18,14 @@
 
 gboolean NO_COLOR = FALSE;
 
+static void
+quit (int sig)
+{
+    g_print("\nExiting now.\n");
+    exit (0);
+}
+
+
 int
 main(int argc, char **argv) {
     /* Include support for NO_COLOR ~> https://no-color.org/ */
@@ -28,7 +36,7 @@ main(int argc, char **argv) {
 
     printf("%s v%s: A protocol research and C programming project.\n", "AzalyxCX", AZALYXCX_VERSION);
     printf("%s, %s\n\n\n", AZALYXCX_COPYRIGHT, AZALYXCX_DEVELOPER);
-
+    signal (SIGINT, quit);
     gchar **cli_args;                                        /* CLI arguments */
     struct settings *conf = g_slice_new(struct settings);    /* All settings */
     GArray *ServiceDatas = g_array_new(FALSE, FALSE, sizeof(struct service_data *));    /* Services */
