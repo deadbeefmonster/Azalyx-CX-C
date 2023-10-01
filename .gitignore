@@ -11,3 +11,5 @@ linux_build/CMakeCache.txt
 linux_build/CMakeFiles/
 linux_build/Makefile
 linux_build/cmake_install.cmake
+*.crt
+*.key
