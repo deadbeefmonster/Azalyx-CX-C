@@ -5,3 +5,9 @@ cmake-build-release
 configuration.ini
 cmake-build-minsizerel
 cmake-build-relwithdebinfo
+**/*.old
+linux_build/AzalyxCX
+linux_build/CMakeCache.txt
+linux_build/CMakeFiles/
+linux_build/Makefile
+linux_build/cmake_install.cmake
