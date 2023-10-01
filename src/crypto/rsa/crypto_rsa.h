@@ -10,15 +10,16 @@
 #include <openssl/rsa.h>
 #include <openssl/rand.h>
 
-int rsa_encrypt(EVP_PKEY *pkey,
-                unsigned char *bytes,
-                int bytes_len,
-                unsigned char *encrypted_key,
-                int encrypted_key_len,
-                unsigned char *iv,
-                unsigned char *cipher_bytes);
+int 
+rsa_encrypt(EVP_PKEY * pkey,
+    unsigned char *bytes,
+    int bytes_len,
+    unsigned char *encrypted_key,
+    int encrypted_key_len,
+    unsigned char *iv,
+    unsigned char *cipher_bytes);
 
 /* 2048 bit key */
-void rsa_new_key(EVP_PKEY *pkey, int bits);
+void rsa_new_key(EVP_PKEY * pkey, int bits);
 
-#endif /* AZALYXCX_CRYPTO_RSA_CRYPTO_RSA_H */
+#endif				/* AZALYXCX_CRYPTO_RSA_CRYPTO_RSA_H */

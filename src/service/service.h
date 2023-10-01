@@ -24,11 +24,11 @@
 #define SERVICE_TYPE_UNIX 4
 
 struct service_data {
-    guint8 service_proto;
-    guint8 service_type;
-    guint16 port;
+	guint8 service_proto;
+	guint8 service_type;
+	guint16 port;
 };
 
 
 
-#endif /* AZALYXCX_SERVICE_SERVICE_H */
+#endif				/* AZALYXCX_SERVICE_SERVICE_H */

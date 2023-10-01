@@ -16,18 +16,18 @@
 #include "service/service.h"
 
 struct settings {
-    gchar *configuration_file;
-    gint service_enable_dns;
-    gint service_enable_http;
-    gint service_enable_smtp;
-    guint16 service_dns_port;
-    guint16 service_http_port;
-    guint16 service_smtp_port;
-    gchar *http_certfile;
-    gchar *http_keyfile;
-    gchar *sqlite_database_file;
+	gchar *configuration_file;
+	gint service_enable_dns;
+	gint service_enable_http;
+	gint service_enable_smtp;
+	guint16 service_dns_port;
+	guint16 service_http_port;
+	guint16 service_smtp_port;
+	gchar *http_certfile;
+	gchar *http_keyfile;
+	gchar *sqlite_database_file;
 };
 
 void load_configuration_file(struct settings *);
 
-#endif /* AZALYXCX_CONFIGURATION_CONFIGURATION_H */
+#endif				/* AZALYXCX_CONFIGURATION_CONFIGURATION_H */
