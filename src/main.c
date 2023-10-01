@@ -102,8 +102,6 @@ main(int argc, char **argv) {
 
         // https://gitlab.gnome.org/GNOME/libsoup/blob/master/examples/simple-httpd.c
         if (conf->http_keyfile && conf->http_certfile) {
-            // Validate both files are readable
-
             GTlsCertificate *cert = g_tls_certificate_new_from_files (conf->http_certfile, conf->http_keyfile, &http_error);
             if (http_error) {
                 g_printerr ("FATAL ERROR: Could not load certificate for http service: %s\n", http_error->message);
