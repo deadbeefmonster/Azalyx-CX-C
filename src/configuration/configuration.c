@@ -7,6 +7,8 @@ load_configuration_file(struct settings *conf) {
     GError *error = NULL;
     gboolean service_enable_dns, service_enable_http, service_enable_smtp;
     guint16 service_dns_port, service_http_port, service_smtp_port;
+    gchar *http_keyfile_path, *http_certfile_path;
+    GFile *http_certfile, *http_keyfile;
 
     /* Test if file is available for read-only access */
     int fd = g_open(conf->configuration_file, O_WRONLY | O_NOFOLLOW | O_CLOEXEC);
@@ -40,6 +42,15 @@ load_configuration_file(struct settings *conf) {
             g_key_file_get_integer(keyfile, "http", "port", NULL);
     service_smtp_port =
             g_key_file_get_integer(keyfile, "smtp", "port", NULL);
+    http_keyfile_path = g_key_file_get_string(keyfile, "http", "keyfile", NULL);
+    http_certfile_path = g_key_file_get_string(keyfile, "http", "certfile", NULL);
+
+    if (http_keyfile_path) {
+        conf->http_keyfile = http_keyfile_path;
+    }
+    if (http_certfile_path) {
+        conf->http_certfile = http_certfile_path;
+    }
 
     /* Store only if it hasn't been stored before (do not override CLI
      * args) */

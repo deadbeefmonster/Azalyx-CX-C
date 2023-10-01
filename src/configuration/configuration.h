@@ -23,6 +23,8 @@ struct settings {
     guint16 service_dns_port;
     guint16 service_http_port;
     guint16 service_smtp_port;
+    gchar *http_certfile;
+    gchar *http_keyfile;
 };
 
 void load_configuration_file(struct settings *);

@@ -48,6 +48,8 @@ main(int argc, char **argv) {
     conf->service_enable_smtp = SERVICE_STATUS_UNKNOWN;
     conf->service_smtp_port = 0;
     conf->configuration_file = NULL;
+    conf->http_keyfile = NULL;
+    conf->http_certfile = NULL;
 
 
     /* Read command line arguments */
@@ -96,17 +98,40 @@ main(int argc, char **argv) {
 //
 //        g_signal_connect(http_service, "run", G_CALLBACK(http_handle_request), NULL);
 //        g_socket_service_start(http_service);
+        SoupServer *http_server;
 
         // https://gitlab.gnome.org/GNOME/libsoup/blob/master/examples/simple-httpd.c
-        SoupServer *http_server = soup_server_new("server-header", "http-server", NULL);
-        soup_server_listen_all(http_server, conf->service_http_port, 0,&http_error);
-        if (http_error != NULL) {
-            g_printerr("FATAL ERROR: Could not create http server: %s\n", http_error->message);
-            g_error_free (http_error);
-            return (EXIT_FAILURE);
-        }
+        if (conf->http_keyfile && conf->http_certfile) {
+            // Validate both files are readable
 
-        soup_server_add_handler (http_server, NULL,http_handle_request, NULL, NULL);
+            GTlsCertificate *cert = g_tls_certificate_new_from_files (conf->http_certfile, conf->http_keyfile, &http_error);
+            if (http_error) {
+                g_printerr ("FATAL ERROR: Could not load certificate for http service: %s\n", http_error->message);
+                g_error_free(http_error);
+                return(EXIT_FAILURE);
+            }
+            http_server = soup_server_new ("server-header", "http-server",
+                                      "tls-certificate", cert,
+                                      NULL);
+            g_object_unref (cert);
+
+            soup_server_listen_all (http_server, conf->service_http_port, SOUP_SERVER_LISTEN_HTTPS, &http_error);
+            if (http_error != NULL) {
+                g_printerr("FATAL ERROR: Could not create http server (with certificate services): %s\n", http_error->message);
+                g_error_free(http_error);
+                return (EXIT_FAILURE);
+            }
+        }
+        else {
+            http_server = soup_server_new("server-header", "http-server", NULL);
+            soup_server_listen_all(http_server, conf->service_http_port, 0, &http_error);
+            if (http_error != NULL) {
+                g_printerr("FATAL ERROR: Could not create http server: %s\n", http_error->message);
+                g_error_free(http_error);
+                return (EXIT_FAILURE);
+            }
+        }
+        soup_server_add_handler(http_server, NULL, http_handle_request, NULL, NULL);
 
         //service_data_http->service = http_service;
         service_data_http->port = conf->service_http_port;
@@ -114,8 +139,12 @@ main(int argc, char **argv) {
         service_data_http->service_type = SERVICE_TYPE_HTTP;
 
         g_array_append_val(ServiceDatas, service_data_http);
-        g_info("Service HTTP Loaded");
 
+        if (conf->http_keyfile && conf->http_certfile) {
+            g_info("Service HTTP Loaded with HTTPS capabilities");
+        } else {
+            g_info("Service HTTP Loaded");
+        }
         /* TODO: plugin hook */
     }
     if (conf->service_enable_smtp == SERVICE_STATUS_ENABLED) {
