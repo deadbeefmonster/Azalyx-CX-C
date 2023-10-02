@@ -48,7 +48,8 @@ load_configuration_file(struct settings *conf)
 	sqlite_database_path = g_key_file_get_string(keyfile, "sqlite", "database_file", NULL);
 
 	if (sqlite_database_path && conf->sqlite_database_file == NULL) {
-		conf->sqlite_database_file = sqlite_database_path;
+        g_debug("load_configuration_file(): sqlite_database_path = '%s'", g_shell_unquote(sqlite_database_path, NULL));
+		conf->sqlite_database_file = g_shell_unquote(sqlite_database_path, NULL);
 	}
 	if (http_keyfile_path) {
 		conf->http_keyfile = http_keyfile_path;

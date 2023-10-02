@@ -157,8 +157,10 @@ main(int argc, char **argv)
 
 
 	/* Cleanup */
-	if (conf)
-		g_slice_free(struct settings, conf);
+	if (conf) {
+        g_free(conf->sqlite_database_file);
+        g_slice_free(struct settings, conf);
+    }
 
 
 	return (EXIT_SUCCESS);
