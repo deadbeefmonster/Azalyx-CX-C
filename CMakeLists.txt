@@ -12,14 +12,7 @@ find_package(OpenSSL REQUIRED)
 find_package(SQLite3 REQUIRED)
 
 include_directories(${GLIB_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR} ${SQLite3_INCLUDE_DIRS})
-include_directories(
-        src
-        src/database
-        src/crypto
-        src/configuration
-        src/cli
-        src/service
-)
+include_directories( src )
 add_executable(${PROJECT_NAME}
         src/main.c
         src/cli/cli_arguments.c
