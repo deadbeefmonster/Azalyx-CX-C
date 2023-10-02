@@ -14,3 +14,4 @@ linux_build/cmake_install.cmake
 *.crt
 *.key
 **/*.backup
+database.db
