@@ -51,11 +51,11 @@ load_configuration_file(struct settings *conf)
         g_debug("load_configuration_file(): sqlite_database_path = '%s'", g_shell_unquote(sqlite_database_path, NULL));
 		conf->sqlite_database_file = g_shell_unquote(sqlite_database_path, NULL);
 	}
-	if (http_keyfile_path) {
-		conf->http_keyfile = http_keyfile_path;
+	if (http_keyfile_path && conf->http_keyfile == NULL) {
+		conf->http_keyfile = g_shell_unquote(http_keyfile_path, NULL);
 	}
-	if (http_certfile_path) {
-		conf->http_certfile = http_certfile_path;
+	if (http_certfile_path && conf->http_certfile == NULL) {
+		conf->http_certfile = g_shell_unquote(http_certfile_path, NULL);
 	}
 	/* Store only if it hasn't been stored before (do not override CLI
 	 * args) */

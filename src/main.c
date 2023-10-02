@@ -129,9 +129,9 @@ main(int argc, char **argv)
 		soup_server_add_handler(http_server, NULL, http_handle_request, NULL, NULL);
 
 		if (conf->http_keyfile && conf->http_certfile) {
-			g_info("Service HTTP Loaded with HTTPS capabilities");
+			g_info("Service HTTP Loaded with HTTPS capabilities on port %i", conf->service_http_port);
 		} else {
-			g_info("Service HTTP Loaded");
+			g_info("Service HTTP Loaded on port %i", conf->service_http_port);
 		}
 		/* TODO: plugin hook */
 	}
@@ -157,10 +157,10 @@ main(int argc, char **argv)
 
 
 	/* Cleanup */
-	if (conf) {
-        g_free(conf->sqlite_database_file);
-        g_slice_free(struct settings, conf);
-    }
+    g_free(conf->sqlite_database_file);
+    g_free(conf->http_certfile);
+    g_free(conf->http_keyfile);
+    g_slice_free(struct settings, conf);
 
 
 	return (EXIT_SUCCESS);
